@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  return [
+    {
+      params: {
+        slug: "stateOfJS",
+      },
+      props: {
+        slug: "stateOfJS",
+        title: "Conoces el State of JS?",
+        description: "El State of JS es una encuesta anual que recopila información sobre las tendencias y el estado de la tecnología JavaScript. ¡Participa y gana un sticker!",
+      }
+    },
+    {
+      params: {
+        slug: "docker",
+      },
+      props: {
+        slug: "docker",
+        title: "Mejora en Docker!",
+        description: "Docker es una plataforma de código abierto que permite crear, probar e implementar aplicaciones rápidamente. ¡Aprende a usarlo!",
+      }
+    },
+  ];
+}
+
+const { title, description } = Astro.params;
+---
+
+<Layout title={title} description={description}>
+  <div>
+    <h1>{title}</h1>
+    <p>{description}</p>
+  </div>
+</Layout>
