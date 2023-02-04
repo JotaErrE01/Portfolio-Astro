@@ -1,21 +1,23 @@
 ---
 slug: blob
-title: ¿Sabes cómo puedes manipular binarios en JS?
+title: El Objeto Blob en JS
 date: 2023 Feb 10, por JotaErrE
 pubDate: 2021-02-10
 images: ['https://cdn.pixabay.com/photo/2015/12/04/14/05/code-1076536_1280.jpg']
-shortDescription: En este post aprenderás a manipular binarios en JS utilizando el objeto Blob.
+shortDescription: En este post revisaremos la importancia del objeto Blob, como nos ayuda en el manejo de Binarios y porque deberías conocerlo.
 ---
 
 {/* # ¿Sabes cómo puedes manipular binarios en JS?
 2023 Feb 10, por JotaErrE */}
 
-![Imagen de código](https://cdn.pixabay.com/photo/2015/12/04/14/05/code-1076536_1280.jpg 'imgMdx')
+{/* ![Imagen de código](https://cdn.pixabay.com/photo/2015/12/04/14/05/code-1076536_1280.jpg 'imgMdx') */}
 
 La manipulación de binarios en _JavaScript_ es uno de los temas que personalmente más me ha costado entender y sobre todo encontrar información, si ese es tu caso, te invito a leer este post.
 
 ## Binary Large Object (BLOB)
-Comenzando por el principio, un BLOB es un objeto de JS que utiliza el navegador para la manipulación de archivos binario, es decir, un archivo que no es de texto plano. Estos sería las imágenes, videos, audios, etc. \
+Alguna vez te ha pasado que intentas utilizar un string de base64 para mostrar una imagen en un elemento img, y te das cuenta que no funciona porque el navegador no puede interpretar el string, y te preguntas ¿cómo puedo mostrar una imagen en un elemento img? \
+
+BLOB es un objeto de JS que el novegador soporta y es útil para la manipulación de archivos binarios, es decir, un archivo que no es de texto plano. Estos sería las imágenes, videos, audios, etc. \
 El uso del obejeto blob radica principalmente en poder leer y escribir archivos en el navegador, por ejemplo si queremos crear un archivo de texto plano, podemos hacerlo de la siguiente manera:
 
 ```js
@@ -43,5 +45,3 @@ console.log(url); // blob:http://tuURL.com
 
 Tengamos en cuenta que la url que se genera es temporal, pero podemos generar una nueva cuando queramos consumir el binario. \
 Esto es muy útil cuando queremos mostrar un binario pesado como lo son los videos y audios, ya que para cuando tengamos la url del archivo, el navegador ya habrá descargado el archivo y lo tendrá en cache, por lo que al momento de reproducirlo no tendremos que esperar a que se descargue.
-
-Este fue el primero de una serie de 3 artículos sobre la manipulación de binarios en JS, si te gustó este post, te invito a leer el siguiente dando click aqui. [Que rayos es un Buffer?](/posts/buffer 'link')
