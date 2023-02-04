@@ -1,37 +1,71 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "layouts/Layout.astro";
+import CodeBox from "components/ui/CodeBox.astro";
+import type { IFrontmatter } from "interfaces/IFrontmatter";
 
+export const prerender = true;
 export async function getStaticPaths() {
-  return [
-    {
-      params: {
-        slug: "stateOfJS",
-      },
-      props: {
-        slug: "stateOfJS",
-        title: "Conoces el State of JS?",
-        description: "El State of JS es una encuesta anual que recopila información sobre las tendencias y el estado de la tecnología JavaScript. ¡Participa y gana un sticker!",
-      }
+  const posts = await Astro.glob<IFrontmatter>("./_data/*.mdx");
+
+  return posts.map((post) => ({
+    params: {
+      slug: post.frontmatter.slug,
     },
-    {
-      params: {
-        slug: "docker",
-      },
-      props: {
-        slug: "docker",
-        title: "Mejora en Docker!",
-        description: "Docker es una plataforma de código abierto que permite crear, probar e implementar aplicaciones rápidamente. ¡Aprende a usarlo!",
-      }
+    props: {
+      post,
     },
-  ];
+  }));
+}
+// rest Cuando se sube un archivo al cliente mediante un input de tipo FileList,
+interface Props {
+  images: string[];
+  title: string;
+  description: string;
+  post: {
+    frontmatter: {
+      title: string;
+      description: string;
+      images: string[];
+      slug: string;
+      date: string;
+    };
+    Content: any;
+    components: {
+      [key: string]: any;
+    };
+  };
 }
 
-const { title, description } = Astro.params;
+const { Content, components, frontmatter } = Astro.props.post;
 ---
 
-<Layout title={title} description={description}>
-  <div>
-    <h1>{title}</h1>
-    <p>{description}</p>
-  </div>
+<Layout title={"title"} description={"description"}>
+  <section class="max-w-3xl mx-auto">
+    <h1
+      class="text-3xl font-bold text-center text-gray-800 dark:text-gray-100 mt-10"
+    >
+      {frontmatter.title}
+    </h1>
+    <span
+      class="block text-center text-gray-500 dark:text-gray-400 text-sm mt-2 mb-5"
+      >{frontmatter.date}</span
+    >
+
+    <figure
+      class="bg-gray-100 dark:bg-gray-800 rounded-md overflow-hidden mb-5 h-96 w-[90%] sm:w-[100%] mx-auto shadow-md dark:shadow-lg border border-secondary dark:border-gray-700"
+    >
+      <img
+        src={frontmatter.images[0]}
+        alt="State of JS"
+        class="h-full w-full object-cover"
+      />
+    </figure>
+
+    <Content
+      components={{
+        ...components,
+        pre: CodeBox,
+      }}
+    />
+  </section>
 </Layout>

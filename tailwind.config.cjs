@@ -2,7 +2,11 @@
 module.exports = {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {},
-	plugins: [require('daisyui')],
+	plugins: [
+		require('daisyui'),
+		// require('@tailwindcss/aspect-ratio'),
+    // require('@tailwindcss/typography'),
+	],
 	daisyui: {
 		themes: [
 			{

@@ -1,0 +1,52 @@
+---
+import ProjectCard from './ProjectCard.astro';
+
+const data = [
+  {
+    title: "Project 1",
+    image: "https://wallpapercave.com/wp/wp4923991.png",
+    technologies: ["React", "TypeScript", "TailwindCSS"],
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  },
+  {
+    title: "Project 1",
+    image: "https://wallpapercave.com/wp/wp4923991.png",
+    technologies: ["React", "TypeScript", "TailwindCSS"],
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  },
+  {
+    title: "Project 1",
+    image: "https://wallpapercave.com/wp/wp4923991.png",
+    technologies: ["React", "TypeScript", "TailwindCSS"],
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  },
+];
+
+---
+<section class='mt-12'>
+  <div class='md:flex items-center'>
+    <h2 class='font-bold text-3xl mb-8 dark:text-white'>
+      <span class='dark:text-primary-focus text-secondary'>Proyectos </span>
+      Recientes
+    </h2>
+
+    <div class='flex-grow' />
+
+    <div>
+      <a
+        href='#'
+        class='text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors group'
+      >
+        Ver todos los proyectos <span class='text-primary group-hover:text-primary-focus'>&rarr;</span>
+      </a>
+    </div>
+  </div>
+  <!-- <ProjectCard /> -->
+  {
+    data.map(project => (
+      <ProjectCard
+        {...project}
+      />
+    ))
+  }
+</section>

@@ -1,0 +1,75 @@
+---
+slug: nextjs
+title: Next.js - SSG, SSR, ISR y SPA
+date: 2023 Feb 10, por JotaErrE
+pubDate: 2021-02-10
+images: ['https://mobisoftinfotech.com/resources/wp-content/uploads/2022/04/next-JS-framework.png']
+shortDescription: "Next.js es un framework de React que nos permite crear aplicaciones web de forma sencilla y rápida. En este artículo veremos las diferentes formas de generar contenido en Next.js: SSG, SSR, ISR y SPA."
+---
+{/* ![NextJs](https://mobisoftinfotech.com/resources/wp-content/uploads/2022/04/next-JS-framework.png 'imgMdx') */}
+
+Uno de los conceptos más confusos de entender en Next.js es diferenciar entre las distintas maneras de generar el contenido de tu página o aplicación web.
+
+Existen 2 formas 
+
+A continuación te listo las diferentes formas en las que Next puede generar el contenido:
+
+{/* 1. **SPA:** Single Page Application. */} => no va
+2. **SSR:** Server Side Rendering.
+3. **SSG:** Static Site Generation.
+4. **ISR:** Incremental Static Regeneration.
+
+## Single Page Application (SPA)
+
+Al desarrollar una aplicación de **React** normalmente estamos desarrollando una **SPA**. En este tipo de aplicación, el servidor solo sirve el código de la aplicación y el resto de la lógica se ejecuta en el cliente. Esto significa que el servidor no tiene que generar el contenido de la página, sino que el cliente lo hace. Esto es muy útil cuando queremos que nuestra aplicación sea rápida y que el usuario pueda interactuar con ella de forma inmediata.
+
+Sin embargo, este tipo de aplicaciones no son muy buenas para SEO, ya que el contenido de la página no se genera en el servidor, sino en el cliente. Esto significa que los motores de búsqueda no pueden indexar el contenido de la página.
+
+## Server Side Rendering (SSR)
+
+Si el **SPA** genera el contenido en el cliente, el **SSR** lo genera en el servidor. Esto significa que el servidor genera el contenido de la página y lo envía al cliente. Esto es muy útil para el SEO, ya que los motores de búsqueda pueden indexar el contenido de la página. Sin embargo, esto tiene un coste, ya que el servidor tiene que generar el todo el html de la página cada vez que se solicita. Por esta razón el equipo de **Nextjs** recomienda utilizar esta funcionalidad solo cuando es estrictamente necesario.
+
+Para poder utilizar esta funcionalidad de Nextjs tenemos que ayudarnos de la siguiente funcion que obligatoriamente tiene que estar en el direcotrio **pages**:
+
+```js
+// Se ejecuta en el servidor cada vez que se solicita la página
+export async function getServerSideProps(context) {
+
+	// Todo el código que escribamos aquí se ejecutará en el servidor.
+	// Podemos hacer peticiones a una API, a una base de datos, etc.
+
+  return {
+    props: {}, // Se pasan como props al componente de la página
+  }
+}
+```
+
+## Static Site Generation (SSG)
+La funcionalidad SSG es algo que hace bastante poderoso a Next y muy útil para el SEO de nuestra aplicación. Imaginemos que tenemos una página que muestra los últimos artículos de nuestro blog. En este caso, no es necesario que el servidor genere el contenido de la página cada vez que se solicita, ya que el contenido no cambia. 
+
+En este caso, podemos generar el contenido de la página en el servidor y almacenarlo en un fichero estático. Esto significa que el servidor no tiene que generar el contenido de la página cada vez que se solicita, sino que lo sirve directamente desde el fichero estático. Esto es muy útil para mejorar el rendimiento de nuestra aplicación.
+
+Para poder utilizar esta funcionalidad de Nextjs tenemos que ayudarnos de la siguientes funciones que obligatoriamente tiene que estar en el direcotrio **pages**:
+
+```js
+// Se ejecuta en el servidor solo cuando se hace el build de la aplicación
+export async function getStaticPaths() {
+	// Aquí podemos generar las rutas de las páginas que queremos generar.
+	// Por ejemplo, si tenemos una página que muestra los artículos de un blog,
+	// podemos generar las rutas de las páginas de cada artículo.
+
+	return {
+		paths: [], // Rutas de las páginas que queremos generar
+		fallback: false, // Si es true, se generan las páginas en tiempo de ejecución
+	}
+}
+
+export async function getStaticProps(context) {
+	// Todo el código que escribamos aquí se ejecutará en el servidor.
+	// Podemos hacer peticiones a una API, a una base de datos, etc.
+
+	return {
+		props: {}, // Se pasan como props al componente de la página
+	}
+}
+```

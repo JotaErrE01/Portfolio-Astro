@@ -1,11 +1,15 @@
 ---
-import { Projects } from "../components/Projects";
-import Layout from "../layouts/Layout.astro";
+import Posts from "components/Posts.astro";
+import Projects from "components/Projects.astro";
+import Layout from "layouts/Layout.astro";
+
+export const prerender = true;
+console.log("SERVIDOR");
 ---
 
 <Layout title="JotaErrE - Dev">
 	<main
-		class="mt-12 mx-auto flex justify-between gap-10 flex-col md:flex-row"
+		class="mt-12 mx-auto flex justify-between gap-10 md:gap-1 lg:gap-10 flex-col md:flex-row"
 	>
 		<div>
 			<h1 class="text-3xl font-bold leading-[4rem] toogle-text">
@@ -30,8 +34,9 @@ import Layout from "../layouts/Layout.astro";
 					>
 						<img src="svgs/twitter.svg" class="w-2/3 text-sm" />
 					</div>
-					<p class="py-2 pr-4">Twitter</p>
+					<p class="py-2 pr-4 m-0">Twitter</p>
 				</a>
+
 				<a
 					href="https://github.com/JotaErrE01"
 					target="_blank"
@@ -43,8 +48,9 @@ import Layout from "../layouts/Layout.astro";
 					>
 						<img src="svgs/github.svg" class="w-4/5 text-sm" />
 					</div>
-					<p class="py-2 pr-4">Github</p>
+					<p class="py-2 pr-4 m-0">Github</p>
 				</a>
+
 				<a
 					href="https://www.linkedin.com/in/jonathan-ruiz-b810531bb/"
 					target="_blank"
@@ -56,19 +62,21 @@ import Layout from "../layouts/Layout.astro";
 					>
 						<img src="svgs/linkedin.svg" class="w-1/2 text-sm" />
 					</div>
-					<p class="py-2 pr-4">LinkdIn</p>
+					<p class="py-2 pr-4 m-0">LinkdIn</p>
 				</a>
 			</div>
 		</div>
 
 		<img
-			class="rounded-full w-80 mx-auto"
+			class="rounded-full md:w-80 mx-auto md:max-h-80 my-auto"
 			src="https://pbs.twimg.com/profile_images/733479735993503744/_Th2hbRs_400x400.jpg"
 			alt="Me"
 		/>
 	</main>
 
 	<Projects />
+
+	<Posts />
 </Layout>
 
 <style></style>

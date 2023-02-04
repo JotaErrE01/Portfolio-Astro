@@ -1,0 +1,32 @@
+---
+type Props = {
+  title: string;
+  image: string;
+  description: string;
+  date: string;
+  slug: string;
+};
+
+const { title, image, description, date, slug } = Astro.props;
+---
+
+<a
+  href={`/posts/${slug}`}
+  class="md:basis-[32%] lg:basis-[48%] xl:basis-[32%] overflow-hidden rounded cursor-pointer bg-gray-200 dark:bg-slate-800 hover:scale-[1.02] transition-all duration-200 basis-[100%] min-w-[350px] lg:min-w-[300px] hover:shadow-md"
+>
+  <figure class="h-52 overflow-hidden w-full object-cover">
+    <img src={image} class="object-cover h-full w-full" alt={title} />
+  </figure>
+
+  <div class="py-2 px-4">
+    <h3 class="text-center font-bold text-lg dark:text-white">{title}</h3>
+
+    <span class="block text-center text-sm text-gray-500 dark:text-gray-400">
+      {date}
+    </span>
+
+    <p class="mt-4 mb-10">
+      {description}
+    </p>
+  </div>
+</a>

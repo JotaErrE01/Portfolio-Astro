@@ -1,0 +1,23 @@
+---
+import { log } from 'astro/dist/core/logger/core';
+import { e } from '../../.netlify/functions-internal/chunks/astro.3e8152d1.mjs';
+import { Content } from './about.mdx';
+import { marked } from 'marked';
+import Heading from './Heading.astro';
+const element = `
+  <h1
+    class="text-4xl font-bold text-red-500"
+  >Hola </h1>
+`;
+const htmnl = marked(element);
+---
+
+<!-- <Content 
+  components={{
+    h1: element,
+    h2: Heading,
+  }}
+/> -->
+<h1
+  set:html={htmnl}
+></h1>

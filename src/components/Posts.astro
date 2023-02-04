@@ -1,0 +1,60 @@
+---
+import type { IFrontmatter } from "interfaces/IFrontmatter";
+import { sortByDate } from "utils/sortByDate";
+import PostCard from "./PostCard.astro";
+
+const posts = await Astro.glob<IFrontmatter>("../pages/posts/_data/*.mdx");
+const sortedPosts = sortByDate(posts);
+const lastPosts = sortedPosts.slice(0, 3).map(post => ({
+  title: post.frontmatter.title,
+  image: post.frontmatter.images[0],
+  description: post.frontmatter.shortDescription,
+  date: post.frontmatter.date,
+  slug: post.frontmatter.slug,
+}));
+
+const data = [
+    ...lastPosts,
+    {
+      title: "Docker para el desarrollo web",
+      image: "https://www.docker.com/wp-content/uploads/2021/09/Moby-run.png",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+      date: 'Enero 24, 2023',
+      slug: 'posts/docker-para-el-desarrollo-web'
+    },
+    // {
+    //   title: "Next.js - SSG, SSR, ISR y SPA",
+    //   image: "https://mobisoftinfotech.com/resources/wp-content/uploads/2022/04/next-JS-framework.png",
+    //   description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    //   date: 'Enero 24, 2023',
+    //   slug: 'posts/next-js-ssg-ssr-isr-y-spa'
+    // },
+  ]
+---
+
+<section class="mt-12">
+  <div class="md:flex items-center">
+    <h2 class="font-bold text-3xl mb-8 dark:text-white">Últimos <span class="text-secondary dark:text-primary">Posts</span></h2>
+
+    <div class='flex-grow' />
+    
+    <div>
+      <a
+        href='/posts'
+        class='text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors group'
+      >
+        Ver todos los proyectos <span class='text-primary group-hover:text-primary-focus'>&rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="flex gap-4 flex-wrap justify-center xl:justify-between">
+    {
+      data.map(post => (
+        <PostCard 
+          {...post}
+        />
+      ))
+    }
+  </div>
+</section>

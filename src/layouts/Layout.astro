@@ -1,12 +1,16 @@
 ---
 import { Navbar } from "../components/Navbar";
-
+import 'styles/post.css'; // Posts styles
+// import shiki from 'shiki';
 export interface Props {
 	title?: string;
 	description?: string;
+	frontmatter?: {
+		[key: string]: any;
+	};
 }
 
-const { title, description } = Astro.props;
+const { title, description, frontmatter } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -15,28 +19,46 @@ const { title, description } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/base16/onedark.min.css"
+			integrity="sha512-rMDp1YyPJ6wXwTSjhgWbEKOobIWcZCE9pbbdBy46I+RBatSS0HR2NFYn0Fzbb7dqO9sbf8ie0hvnV4C7SKHBcg=="
+			crossorigin="anonymous"
+			referrerPolicy="no-referrer"
+		/>
+
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title>{title || (frontmatter && frontmatter.title)}</title>
 	</head>
-	<body class="container mx-auto p-4 md:p-0">
+	<body class="container lg:max-w-[100rem] mx-auto p-4 md:px-5 lg:px-0">
 		<div class="md:w-full lg:w-3/4 mx-auto">
 			<Navbar client:load />
-	
+
 			<slot />
-	
-			<footer class="mb-2">
-				<p class="text-center text-gray-500 text-sm">
+
+			<footer class="mt-16">
+				<p class="text-center text-gray-500 text-sm mb-1">
 					© {new Date().getFullYear()} - Hecho con ❤️ por
-					<a
-						href="/"
-						class="text-blue-500 hover:text-blue-700 hover:underline"
+					<a href="/" class="text-blue-500 hover:text-blue-700 hover:underline"
 						>JotaErrE</a
 					>
 				</p>
 			</footer>
-
 		</div>
 	</body>
-	<script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"
+		integrity="sha512-bgHRAiTjGrzHzLyKOnpFvaEpGzJet3z4tZnXGjpsCcqOnAH6VGUx9frc5bcIhKTVLEiCO6vEhNAgx5jtLUYrfA=="
+		crossorigin="anonymous"
+		referrerpolicy="no-referrer"
+		is:inline
 	></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"
+	></script> -->
+
+	<script is:inline src="/highlight/highlight.min.js"></script>
+	<script is:inline>
+		hljs.highlightAll();
+	</script>
 </html>

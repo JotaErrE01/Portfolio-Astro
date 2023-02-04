@@ -1,0 +1,23 @@
+---
+// import 'styles/index.css';
+import { Code } from "astro/components";
+
+// const props = Astro.props;
+---
+
+<div class="mockup-code bg-gray-50 dark:bg-[#1e293b] pb-0 my-5 shadow-lg">
+  <pre>
+    <slot />
+    <!-- <Code code={`
+        <pre>
+          <slot />
+        </pre>
+      `} /> -->
+  </pre>
+
+  <!-- <script>
+    document.querySelectorAll("code").forEach((block) => {
+      console.log(block);
+    });
+  </script> -->
+</div>
