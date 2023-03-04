@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState } from 'react';
-// import shiki from 'shiki';
 import 'styles/darkMode.css';
 
 export const Navbar = () => {
@@ -68,12 +67,12 @@ export const Navbar = () => {
             <li
               className='list'
             ><a
-              href='/Posts'
+              href='/posts'
             >Posts</a></li>
             <li
               className='list'
             ><a
-              href='/Proyectos'
+              href='/proyectos'
             >Proyectos</a></li>
           </ul>
         </div>

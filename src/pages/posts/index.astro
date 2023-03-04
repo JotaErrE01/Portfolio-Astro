@@ -1,0 +1,30 @@
+---
+import PostCard from "components/PostCard.astro";
+import type { IFrontmatter } from "interfaces/IFrontmatter";
+import Layout from "layouts/Layout.astro";
+import { sortByDate } from "utils/sortByDate";
+
+const data = await Astro.glob<IFrontmatter>("./_data/*.mdx");
+const sortedPosts = sortByDate(data);
+const posts = sortedPosts.map((post) => ({
+  title: post.frontmatter.title,
+  image: post.frontmatter.images[0],
+  description: post.frontmatter.shortDescription,
+  date: post.frontmatter.date,
+  slug: post.frontmatter.slug,
+}));
+---
+
+<Layout title={"Posts"}>
+  <h1 class="text-3xl font-bold leading-[4rem] toogle-text text-center">
+    Posts
+  </h1>
+
+  <div class="flex gap-4 flex-wrap">
+    {
+      posts.map((post) => {
+        return <PostCard {...post} />;
+      })
+    }
+  </div>
+</Layout>

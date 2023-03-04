@@ -1,7 +1,7 @@
 ---
 import Posts from "components/Posts.astro";
-import Projects from "components/Projects.astro";
 import Layout from "layouts/Layout.astro";
+import Resources from "components/Resources.astro";
 
 export const prerender = true;
 console.log("SERVIDOR");
@@ -16,10 +16,7 @@ console.log("SERVIDOR");
 				Hola!, me llamo <span class="text-primary">Jonathan</span> 👋
 			</h1>
 			<p class="text-lg leading-[2.25rem] mt-4 toogle-text">
-				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-				itaque officiis hic quia cupiditate dignissimos similique, fugiat
-				dolores ab dolorem, architecto debitis a fugit? Debitis laborum quod
-				dicta nihil temporibus.
+				Soy javascript developer, estoy constantemente aprendiendo cosas  nuevas relacionadas al ecosistema de javascript, he creado este blog para compartir mis conocimientos y experiencias, esperando poder ayudar a los nuevos desarrolladores que están comenzando a aventurarse en este increíble mundo del desarrollo web.
 			</p>
 
 			<div class="flex gap-4 mt-4 text-white flex-wrap">
@@ -74,7 +71,7 @@ console.log("SERVIDOR");
 		/>
 	</main>
 
-	<Projects />
+	<Resources />
 
 	<Posts />
 </Layout>

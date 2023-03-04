@@ -1,6 +1,6 @@
 ---
 import Layout from "layouts/Layout.astro";
-import CodeBox from "components/ui/CodeBox.astro";
+// import CodeBox from "components/ui/CodeBox.astro";
 import type { IFrontmatter } from "interfaces/IFrontmatter";
 
 export const prerender = true;
@@ -21,7 +21,7 @@ interface Props {
   images: string[];
   title: string;
   description: string;
-  post: {
+  resource: {
     frontmatter: {
       title: string;
       description: string;
@@ -36,7 +36,7 @@ interface Props {
   };
 }
 
-const { Content, components, frontmatter } = Astro.props.post;
+const { Content, components, frontmatter } = Astro.props.resource;
 ---
 
 <Layout title={"title"} description={"description"}>
@@ -64,7 +64,6 @@ const { Content, components, frontmatter } = Astro.props.post;
     <Content
       components={{
         ...components,
-        pre: CodeBox,
       }}
     />
   </section>
