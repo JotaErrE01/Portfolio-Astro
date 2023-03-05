@@ -2,74 +2,12 @@
 import Posts from "components/Posts.astro";
 import Layout from "layouts/Layout.astro";
 import Resources from "components/Resources.astro";
+import Profile from "components/Profile.astro";
 
-export const prerender = true;
-console.log("SERVIDOR");
 ---
 
 <Layout title="JotaErrE - Dev">
-	<main
-		class="mt-12 mx-auto flex justify-between gap-10 md:gap-1 lg:gap-10 flex-col md:flex-row"
-	>
-		<div>
-			<h1 class="text-3xl font-bold leading-[4rem] toogle-text">
-				Hola!, me llamo <span class="text-primary">Jonathan</span> 👋
-			</h1>
-			<p class="text-lg leading-[2.25rem] mt-4 toogle-text">
-				Soy javascript developer, estoy constantemente aprendiendo cosas  nuevas relacionadas al ecosistema de javascript, he creado este blog para compartir mis conocimientos y experiencias, esperando poder ayudar a los nuevos desarrolladores que están comenzando a aventurarse en este increíble mundo del desarrollo web.
-			</p>
-
-			<div class="flex gap-4 mt-4 text-white flex-wrap">
-				<a
-					href="https://twitter.com/jota_erre_01"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="twitter font-bold rounded-full hover:translate-y-1 transition-transform flex gap-2"
-				>
-					<div
-						class="rounded-full w-10 bg-white grid place-items-center border-twitter"
-					>
-						<img src="svgs/twitter.svg" class="w-2/3 text-sm" />
-					</div>
-					<p class="py-2 pr-4 m-0">Twitter</p>
-				</a>
-
-				<a
-					href="https://github.com/JotaErrE01"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="github font-bold rounded-full hover:translate-y-1 transition-transform flex gap-2"
-				>
-					<div
-						class="rounded-full w-10 p-0 bg-white grid place-items-center border-github"
-					>
-						<img src="svgs/github.svg" class="w-4/5 text-sm" />
-					</div>
-					<p class="py-2 pr-4 m-0">Github</p>
-				</a>
-
-				<a
-					href="https://www.linkedin.com/in/jonathan-ruiz-b810531bb/"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="linkedin font-bold rounded-full hover:translate-y-1 transition-transform flex gap-2"
-				>
-					<div
-						class="rounded-full w-10 p-0 bg-white grid place-items-center border-linkedin"
-					>
-						<img src="svgs/linkedin.svg" class="w-1/2 text-sm" />
-					</div>
-					<p class="py-2 pr-4 m-0">LinkdIn</p>
-				</a>
-			</div>
-		</div>
-
-		<img
-			class="rounded-full md:w-80 mx-auto md:max-h-80 my-auto"
-			src="https://pbs.twimg.com/profile_images/733479735993503744/_Th2hbRs_400x400.jpg"
-			alt="Me"
-		/>
-	</main>
+	<Profile />
 
 	<Resources />
 

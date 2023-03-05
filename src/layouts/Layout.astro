@@ -1,7 +1,6 @@
 ---
 import { Navbar } from "../components/Navbar";
-import 'styles/post.css'; // Posts styles
-// import shiki from 'shiki';
+
 export interface Props {
 	title?: string;
 	description?: string;
@@ -9,6 +8,15 @@ export interface Props {
 		[key: string]: any;
 	};
 }
+
+const posts = await Astro.glob("../pages/posts/_data/*.mdx");
+const resources = await Astro.glob("../pages/resources/_data/*.mdx");
+const data = [...posts, ...resources].map(({ frontmatter }) => ({
+	title: frontmatter.title,
+	slug: frontmatter.slug,
+	image: frontmatter.images[0],
+	shortDescription: frontmatter.shortDescription,
+}));
 
 const { title, description, frontmatter } = Astro.props;
 ---
@@ -33,7 +41,10 @@ const { title, description, frontmatter } = Astro.props;
 	</head>
 	<body class="container lg:max-w-[100rem] mx-auto p-4 md:px-5 lg:px-0">
 		<div class="md:w-full lg:w-3/4 mx-auto">
-			<Navbar client:load />
+			<Navbar 
+				client:load
+				data={data}
+			/>
 
 			<slot />
 

@@ -2,6 +2,7 @@
 import Layout from "layouts/Layout.astro";
 import CodeBox from "components/ui/CodeBox.astro";
 import type { IFrontmatter } from "interfaces/IFrontmatter";
+import 'styles/post.css'; // Posts styles
 
 export const prerender = true;
 export async function getStaticPaths() {
@@ -52,7 +53,7 @@ const { Content, components, frontmatter } = Astro.props.post;
     >
 
     <figure
-      class="bg-gray-100 dark:bg-gray-800 rounded-md overflow-hidden mb-5 md:h-96 w-[90%] sm:w-[100%] mx-auto shadow-md dark:shadow-lg border border-secondary dark:border-gray-700"
+      class="bg-gray-100 dark:bg-gray-800 rounded-md overflow-hidden mb-5 md:h-96 w-[90%] sm:w-[100%] mx-auto border border-secondary dark:border-none shadow_dark_mode"
     >
       <img
         src={frontmatter.images[0]}

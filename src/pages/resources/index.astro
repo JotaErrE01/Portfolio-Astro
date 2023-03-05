@@ -1,0 +1,35 @@
+---
+import ResourceCard from "components/ResourceCard.astro";
+import type { IFrontmatter } from "interfaces/IFrontmatter";
+import Layout from "layouts/Layout.astro";
+import { sortByDate } from "utils/sortByDate";
+
+interface IResource extends IFrontmatter {
+  categories: string[];
+}
+
+const data = await Astro.glob<IResource>("./_data/*.mdx");
+const sortedResources = sortByDate(data);
+const resources = sortedResources.map(resource => ({
+  title: resource.frontmatter.title,
+  image: resource.frontmatter.images[0],
+  description: resource.frontmatter.shortDescription,
+  date: resource.frontmatter.date,
+  slug: resource.frontmatter.slug,
+  categories: resource.frontmatter.categories || [],
+}));
+---
+
+<Layout>
+  <h1 class="text-3xl font-bold leading-[4rem] toogle-text text-center mb-4">
+    Recursos de Programación
+  </h1>
+
+  {
+    resources.map(resource => (
+      <ResourceCard
+        {...resource}
+      />
+    ))
+  }
+</Layout>

@@ -1,27 +1,55 @@
 ---
 import ResourceCard from "./ResourceCard.astro";
+import type { IFrontmatter } from "interfaces/IFrontmatter";
+import { sortByDate } from "utils/sortByDate";
 
+interface IResorces extends IFrontmatter {
+	categories: string[];
+}
 
-const data = [
-  {
-    title: "Resource 1",
-    image: "https://wallpapercave.com/wp/wp4923991.png",
-    technologies: ["React", "TypeScript", "TailwindCSS"],
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-  },
-  {
-    title: "Resource 1",
-    image: "https://wallpapercave.com/wp/wp4923991.png",
-    technologies: ["React", "TypeScript", "TailwindCSS"],
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-  },
-  {
-    title: "Resource 1",
-    image: "https://wallpapercave.com/wp/wp4923991.png",
-    technologies: ["React", "TypeScript", "TailwindCSS"],
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-  },
-];
+const a: IResorces = {
+  categories: [],
+  date: "",
+  slug: "",
+  title: "",
+  images: '',
+  pubDate: "",
+  shortDescription: "",
+};
+
+export const prerender = true;
+
+const data = await Astro.glob<IResorces>("../pages/resources/_data/*.mdx");
+const sortedResources = sortByDate(data);
+const resources = sortedResources.slice(0, 3).map(resource => ({
+  title: resource.frontmatter.title,
+  image: resource.frontmatter.images[0],
+  description: resource.frontmatter.shortDescription,
+  date: resource.frontmatter.date,
+  slug: resource.frontmatter.slug,
+  categories: resource.frontmatter.categories || [],
+}));
+
+// const data = [
+//   {
+//     title: "Resource 1",
+//     image: "https://wallpapercave.com/wp/wp4923991.png",
+//     technologies: ["React", "TypeScript", "TailwindCSS"],
+//     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+//   },
+//   {
+//     title: "Resource 1",
+//     image: "https://wallpapercave.com/wp/wp4923991.png",
+//     technologies: ["React", "TypeScript", "TailwindCSS"],
+//     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+//   },
+//   {
+//     title: "Resource 1",
+//     image: "https://wallpapercave.com/wp/wp4923991.png",
+//     technologies: ["React", "TypeScript", "TailwindCSS"],
+//     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+//   },
+// ];
 
 ---
 <section class='mt-12'>
@@ -35,7 +63,7 @@ const data = [
 
     <div>
       <a
-        href='#'
+        href='/resources'
         class='text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors group'
       >
         Ver todos los recursos <span class='text-primary group-hover:text-primary-focus'>&rarr;</span>
@@ -44,7 +72,7 @@ const data = [
   </div>
   <!-- <ProjectCard /> -->
   {
-    data.map(resource => (
+    resources.map(resource => (
       <ResourceCard
         {...resource}
       />

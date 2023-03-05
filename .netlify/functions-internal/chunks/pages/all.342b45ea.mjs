@@ -350,7 +350,7 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
 					<div class="rounded-full w-10 p-0 bg-white grid place-items-center border-linkedin">
 						<img src="svgs/linkedin.svg" class="w-1/2 text-sm">
 					</div>
-					<p class="py-2 pr-4">LinkdIn</p>
+					<p class="py-2 pr-4">LinkedIn</p>
 				</a>
 			</div>
 		</div>
