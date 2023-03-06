@@ -6,17 +6,17 @@ import tailwind from "@astrojs/tailwind";
 // import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 
 // https://astro.build/config
-import node from "@astrojs/node";
+// import node from "@astrojs/node";
 
 // https://astro.build/config
 import mdx from "@astrojs/mdx";
 
 export default defineConfig({
   integrations: [react(), tailwind(), mdx()],
-  output: 'server',
-  adapter: node({
-    mode: 'standalone'
-  }),
+  // output: 'server',
+  // adapter: node({
+  //   mode: 'standalone'
+  // }),
   // markdown: {
   //   shikiConfig: {
   //     // Choose from Shiki's built-in themes (or add your own)
