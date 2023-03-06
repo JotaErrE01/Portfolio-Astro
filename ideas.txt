@@ -10,3 +10,4 @@ all stars js
 codesignal
 loaders => https://cssloaders.github.io/, https://tobiasahlin.com/spinkit/
 fly.io
+signals

@@ -52,9 +52,6 @@ export const Navbar = ({ data }: Props) => {
     }
   };
 
-  console.log({ dataFiltered });
-
-
   return (
     <header className="navbar bg-base-100 my-5 border rounded-md border-primary shadow-sm shadow-secondary-focus mx-auto">
       <div className="navbar-start">
@@ -88,8 +85,6 @@ export const Navbar = ({ data }: Props) => {
       </div>
 
       <div className='relative navbar-end gap-3'>
-        {/* <div className="navbar-end gap-3"> */}
-        {/* <div className='relative'> */}
         <div className="flex input-bordered input items-center rounded-3xl justify-end p-0 pl-5 max-w-[3rem] first:focus-within:max-w-full origin-right transition-all duration-[400ms] ease-out">
           <input
             ref={searhInput}
@@ -108,12 +103,13 @@ export const Navbar = ({ data }: Props) => {
               setTimeout(() => {
                 setVisible(false);
                 setSearchValue('');
+                setDataFiltered(data);
               }, 100);
             }}
           />
           <button className="btn btn-ghost btn-circle flex"
             onClick={() => {
-              searhInput.current!.focus()
+              searhInput.current!.focus();
             }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 min-w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
@@ -137,26 +133,27 @@ export const Navbar = ({ data }: Props) => {
             />
           </div>
         </button>
-        {/* </div> */}
 
         {
           visible && dataFiltered.length > 0 &&
           <div
-            className="flex flex-col gap-2 p-2 bg-base-100 rounded-md shadow-sm shadow-secondary-focus max-h-[20rem] overflow-y-auto absolute right-0 top-12 z-10 mt-4"
+            className="flex flex-col gap-2 p-2 bg-base-100 rounded-md shadow-sm shadow-secondary-focus max-h-[20rem] overflow-y-auto absolute right-10 top-12 z-10 mt-4 w-[24rem]"
           >
             {
               dataFiltered.map((item) => (
                 <a
                   key={item.slug}
-                  href={`/posts/${item.slug}`}
-                  className="btn btn-ghost normal-case text-base after:hidden justify-start min-h-[2.5rem] gap-2"
+                  href={item.slug}
+                  className="btn btn-ghost normal-case text-base after:hidden justify-start min-h-[2.5rem] gap-2 flex-nowrap"
                 >
                   <img
                     src={item.image}
                     alt={item.title}
                     className="w-12 h-10 mr-2 rounded-md object-cover"
                   />
-                  {item.title}
+                  <p
+                    className="text-base inline-block overflow-hidden overflow-ellipsis whitespace-nowrap"
+                  >{item.title}</p>
                 </a>
               ))
             }

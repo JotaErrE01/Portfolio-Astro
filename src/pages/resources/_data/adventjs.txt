@@ -1,6 +1,6 @@
 ---
-slug: devdocs
-title: El Objeto Blob en JS
+slug: adventjs
+title: Advent Of Js
 date: 2023 Feb 10, por JotaErrE
 pubDate: 2021-02-10
 images: ['https://cdn.pixabay.com/photo/2015/12/04/14/05/code-1076536_1280.jpg']

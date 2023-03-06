@@ -1,0 +1,94 @@
+---
+slug: terminal
+title: Aprende a Personalizar tu Terminal
+date: 2023 Mar 05, por JotaErrE
+pubDate: 2022-03-05
+images: ['https://cdn.pixabay.com/photo/2022/06/01/16/26/software-7236161_1280.png']
+shortDescription: La terminal es eso a lo que tarde o temprano nos enfrentamos en el mundo de la programación y que puede ser intimidante, así que ¿Por qué no hacerla más amigable?.
+---
+
+Personalmente me agrada tener un entorno de trabajo amigable a la vista y la terminal no es la excepción, así que en este artículo te enseñaré a personalizarla sin importar tu sistema operativo.
+
+## Linux
+Linux es el sistema operativo más utilizado en el lado del servidor y también para personas que buscan complicarse la vida 😆, bromas a parte. En linux podemos instalar zsh como nuestra terminal por defecto, para ello debemos ejecutar el siguiente comando en la terminal:
+```bash
+sudo apt install zsh
+```
+Una vez instalado zsh podemos proceder a utilizar zsh como nuestra terminal por defecto, para ello debemos ejecutar el siguiente comando en la terminal:
+```bash
+chsh JotaErrE -s $(which zsh) // reemplaza JotaErrE por tu nombre de usuario
+```
+
+Ahora podemos instalar [Oh My Zsh](https://ohmyz.sh/ 'link'), oh my zsh es un framework de terminal que nos ofrece varias funcionalidades. Para ello necesitamos tener instalado curl y git con anterioridad, si no los tienes instalados puedes instalarlos con el siguiente comando:
+```bash
+sudo apt install curl git -y
+```
+Ahora podemos proceder a instalar Oh My Zsh con el siguiente comando:
+```bash
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+Luego se esta instalación podemos personalizar el tema según deseemos, para ello debemos abrir el archivo .zshrc con el siguiente comando:
+```bash
+nano ~/.zshrc
+``` 
+Y cambiamos el valor de la variable ZSH_THEME por el nombre del tema que deseemos, pudes encontrar una lista de los temas disponibles [aquí](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
+
+```bash
+ZSH_THEME="apple"
+```
+
+Ahora que tenemos un entorno más amigable podemos instalar algunos plugins que nos ayuden con nuestro trabajo, incluso realizar cambios de fuente.
+Para ver una guía más detallada te recomiendo leer este artículo de unos de mis streamers preferidos sobre el desarrollo web [Manz.dev](https://terminaldelinux.com/terminal/introduccion/instalacion-zsh/ 'link')
+
+
+## Windows
+Comenzando por el sistema operativo en el cual comencé a dar mis primeros pasos como desarrollador. Desde Windows 10 **PowerShell** es la terminal que busca reemplazar a la antigua cmd, con mejor rendimiento y con comandos más similares a los de Linux.
+Primero instalaremos desde la Microsoft Store el programa [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab 'link') que nos permitirá tener varias terminales abiertas al mismo tiempo y poder cambiar entre ellas con un simple atajo de teclado, si vienes de Windows 11, esta aplicación ya viene instalada por defecto.
+
+Una vez tengas windows terminal, lo siguiente es decidir si quieres permanecer utililzando PowerShell o prefieres algo más parecido a Linux, si tu intención es mantenerte en PowerShell, puedes personalizar tu terminal con esta [guía](https://youtu.be/5-aK2_WwrmM 'link').
+
+Si prefieres algo más parecido a Linux, puedes instalar [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-win10 'link') y [Ubuntu](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab 'link') para tener una terminal más parecida a la de Linux, una vez instalado todo, podemos personalizar nuestra terminal igual que en la sección de **Linux**.
+Lugo de tener tu entorno, quizás notes que la fuente no es lo que esterabas, te comparte el siguiente artículo donde puedes encotrar una guía de personalización de [*Windows Terminal*](https://terminaldelinux.com/terminal/wsl/configurar-windows-terminal/ 'link')
+
+Si eres de los que no les gusta liarse mucho con tantas instalaciones y configuraciones, te dejo una lista de las alternativas que puedes utilizar en Windows:
+- [CMDER](https://cmder.app/ 'link')
+- [MobaXterm](https://mobaxterm.mobatek.net/ 'link')
+- [ConEmu](https://conemu.github.io/ 'link')
+
+Aunque estas alternativas no cuentan con el rendimiento de WSL o la PowerShell ya que son **emuladores** de terminal, pero son una buenas alternativas si no quieres configurar nada.
+
+## MacOS
+Hoy en día MacOS es el sistema operativo que más prefieren los desarrolladores, y me incluyo.
+Actualmente me encuentro utilizando [Warp](https://warp.dev/ 'link') como mi terminal principal en MacOs.
+
+![Warp](https://res.cloudinary.com/jotaerre01/image/upload/v1678070948/Portfolio/brzvfc5hhhmisyzqpyfs.png)
+
+Warp es una terminal muy interesante, te detallo algunas de sus características:
+* Autocompletado inteligente.
+* Personalizacion de temas.
+* Workflows.
+* Inteligencia artificial.
+
+*Warp* es una increíble terminal, pero no es la única alternativa al momento de personalizar nuestro ambiente, te presento a [FIG](https://fig.io/ 'link'), fig es una herramienta que se puede integrar con diversas terminales, incluso la terminal de vscode. Fig nos ofrece uno de los mejores autocompletados, facilita la instalción de plugins de terminal, y actualmente el equipo de fig se encuentra desarrollando una herramienta basada en inteligencia artificial llamda fig AI.
+
+![fig](https://res.cloudinary.com/jotaerre01/image/upload/v1678064498/Portfolio/a5rynljwp12tlwqltxfz.png)
+
+Una vez instalado fig, podemo proceder con la instalación de **Oh My Zsh**, oh my zsh es un framework de terminal que nos ofrece varias funcionalidades.
+
+![OM MY ZSH](https://res.cloudinary.com/jotaerre01/image/upload/v1678069692/Portfolio/mvw1gfg3k9anuxtszgdv.png)
+
+Luego de haber instalado Oh My Zsh podemos elegir el tema que más nos guste desde el selector de temas del plugin de Oh My Zsh.
+
+![themes](https://res.cloudinary.com/jotaerre01/image/upload/v1678070239/Portfolio/apif5ti2kcuht1e3e1zi.png)
+
+Si abrimos nuestra terminal podemos ver que ya tenemos un entorno de trabajo más amigable, pero que tal si le agregamos la cereza al pastel instalando [Iterm2](https://iterm2.com/ 'link').
+Ahora tenemos más configuraciones que podemos hacer como cambiar la fuente, el color de la terminal, la opacidad, etc.
+
+![settings](https://res.cloudinary.com/jotaerre01/image/upload/v1678070655/Portfolio/fkregf2ji7j6fn9nral1.png)
+
+Ahora sí ya terminamos nuestra instalación y con ello tenemos una mejor y poderosa terminal para trabajar.
+
+![Terminal Example](https://res.cloudinary.com/jotaerre01/image/upload/v1678070666/Portfolio/mbaudhxo9zfmwyzgvywz.png)
+
+
+Espero que este artículo te haya sido de utilidad para darle más vida a tu terminal, que puedas trabajar más comodamente con ella y que puedas sacarle el máximo provecho. Sé que aveces puede llegar a ser un poco intimidante, pero una vez que te acostumbras no querrás utilizar una interfaz gráfica de nuevo.

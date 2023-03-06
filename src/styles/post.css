@@ -56,8 +56,9 @@ pre {
 }
 
 a[title='link']{
-    @apply text-primary-focus transition-all after:bg-primary-focus;
+    @apply text-secondary-focus transition-all after:bg-secondary-focus;
     display: inline-block;
+    font-weight: bold;
 }
 
 a[title='link']::after {

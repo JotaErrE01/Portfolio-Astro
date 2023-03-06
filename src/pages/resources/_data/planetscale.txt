@@ -1,10 +1,10 @@
 ---
-slug: blob
+slug: planetscale
 title: PlanetScale.app
 date: 2023 Feb 10, por JotaErrE
 pubDate: 2023-02-10
 categories: ['Alojamiento', 'PaaS']
-images: ['https://res.cloudinary.com/jotaerre01/image/upload/v1677951379/Portfolio/wabstr8nj90st1gufesn.png']
+images: ['https://res.cloudinary.com/jotaerre01/image/upload/v1678036343/Portfolio/dv173ieforxduyhu7my2.png']
 shortDescription: Estás buscando donde poder desplegar tus proyectos de forma gratuita y sin complicaciones? Te presento a la plataforma PaaS, PlanetScale.app
 ---
 
