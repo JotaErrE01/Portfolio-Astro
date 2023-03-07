@@ -22,6 +22,7 @@ Cuando hablamos de SSR, quiere decir que el servidor genera el contenido de la p
 Para poder utilizar esta funcionalidad de Nextjs tenemos que ayudarnos de la siguiente funcion que obligatoriamente tiene que estar en el direcotrio **pages**:
 
 ```js
+
 // Se ejecuta en el servidor cada vez que se solicita la página
 export async function getServerSideProps(context) {
 
@@ -40,6 +41,7 @@ Imagina que tienes un aplicación web la cuál quieres hacer una petición a alg
 Bueno en este caso el equipo de Next pensó en una grandiosa solución llamada **SSG**. Esta funcionalidad nos permite generar el contenido de la página en el servidor y almacenarlo en un archivo estático. De esta forma, cuando se solicite la página, el servidor no tendrá que generar el contenido, sino que lo servirá directamente desde el archivo estático. Para  poder utilizar esta grandiosa característica debes de utilizar la siguiente función:
 
 ```js
+
 // Se ejecuta en proceso de build de la aplicación y genera un archivo estático
 export async function getStaticProps(context) {
 
@@ -57,6 +59,7 @@ Te estarás preguntando **¿Y que ventajas me sa con respecto al SSR?** Bueno, l
 ## Client Side Rendering (CSR)
 El **CSR** es la forma más sencilla de generar contenido en una aplicación web. En este caso, el servidor solo envía el html básico de la página y el resto del contenido se genera en el cliente. Esto es muy útil cuando el contenido de la página cambia constantemente, ya que no es necesario generar el contenido en el servidor cada vez que se solicita la página. Si has hecho aplicaciónes web con **React** seguro que ya has utilizado esta forma de generar contenido.
 ```js
+
 import { useState, useEffect } from 'react'
 
 function Profile() {
@@ -92,6 +95,7 @@ La principal desventaja de este tipo de renderizado es que no es muy bueno para 
 Imaginemos que estamos desarrollando una aplicación que nos muestre en cada página los datos de un pokemón, para ello nos ayudamos de la POKEAPI. Utilizar el SSR o el SSG nos podría ayudar, pero son miles de pokemons que existen y sería muy tedioso crear una página para cada uno de ellos. Bueno, en este caso podemos utilizar las rutas dinámicas de Nextjs. Para ello debemos de crear un archivo con el nombre de la ruta dinámica y dentro de este archivo debemos de crear una función que se llame **getStaticPaths**. Esta función nos permite generar las rutas dinámicas que queremos que Nextjs genere. Por ejemplo, si queremos que Nextjs genere las rutas dinámicas de los pokemons del 1 al 151, podemos hacer lo siguiente:
 
 ```js
+
 // pages/pokemon/[slug].js
 // Genera `/pokemon/bulbasaur`, `/pokemon/ivysaur`, ... /pokemon/mew`
 export async function getStaticPaths() {
@@ -128,6 +132,7 @@ export default function PokemonInfo({ pokemon }) {
 También sabemos que los pokemons pueden aumentar con cada nueva generación, actualmente son muchos más que 151, entonces ahora si queremos renderizar los nuevos, pero solo hemos trabajado con los primeros 151, podemos hacer lo siguiente:
 
 ```js
+
 // pages/pokemon/[slug].js
 // Ingresamos a /pokemon/chikorita que es el pokemon 152
 export async function getStaticPaths() {

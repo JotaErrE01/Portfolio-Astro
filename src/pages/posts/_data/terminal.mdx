@@ -12,28 +12,34 @@ Personalmente me agrada tener un entorno de trabajo amigable a la vista y la ter
 ## Linux
 Linux es el sistema operativo más utilizado en el lado del servidor y también para personas que buscan complicarse la vida 😆, bromas a parte. En linux podemos instalar zsh como nuestra terminal por defecto, para ello debemos ejecutar el siguiente comando en la terminal:
 ```bash
+
 sudo apt install zsh
 ```
 Una vez instalado zsh podemos proceder a utilizar zsh como nuestra terminal por defecto, para ello debemos ejecutar el siguiente comando en la terminal:
 ```bash
+
 chsh JotaErrE -s $(which zsh) // reemplaza JotaErrE por tu nombre de usuario
 ```
 
 Ahora podemos instalar [Oh My Zsh](https://ohmyz.sh/ 'link'), oh my zsh es un framework de terminal que nos ofrece varias funcionalidades. Para ello necesitamos tener instalado curl y git con anterioridad, si no los tienes instalados puedes instalarlos con el siguiente comando:
 ```bash
+
 sudo apt install curl git -y
 ```
 Ahora podemos proceder a instalar Oh My Zsh con el siguiente comando:
 ```bash
+
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 Luego se esta instalación podemos personalizar el tema según deseemos, para ello debemos abrir el archivo .zshrc con el siguiente comando:
 ```bash
+
 nano ~/.zshrc
 ``` 
 Y cambiamos el valor de la variable ZSH_THEME por el nombre del tema que deseemos, pudes encontrar una lista de los temas disponibles [aquí](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
 
 ```bash
+
 ZSH_THEME="apple"
 ```
 

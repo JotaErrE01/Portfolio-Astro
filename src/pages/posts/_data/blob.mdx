@@ -21,6 +21,7 @@ BLOB es un objeto de JS que el novegador soporta y es útil para la manipulació
 El uso del obejeto blob radica principalmente en poder leer y escribir archivos en el navegador, por ejemplo si queremos crear un archivo de texto plano, podemos hacerlo de la siguiente manera:
 
 ```js
+
 const blob = new Blob(['Hello, world!'], {type: 'text/plain'});
 console.log(blob); // Blob {size: 13, type: "text/plain"}
 ```
@@ -28,6 +29,7 @@ console.log(blob); // Blob {size: 13, type: "text/plain"}
 Genial! ahora tenemos un objeto blob, pero ¿cómo podemos leerlo?
 
 ```js
+
 const reader = new FileReader();
 reader.addEventListener('loadend', (e) => {
     const text = e.currentTarget.result;
@@ -39,6 +41,7 @@ En el código anterior estamos haciendo una petición a una url la cual está si
 Ahora podemos utilizar el objeto URL.createObjectURL() para poder generar un link que apunte a nuestro archivo binario, y así poder utilizarlo en un elemento img, video, etc.
 
 ```js
+
 const url = URL.createObjectURL(blob);
 console.log(url); // blob:http://tuURL.com
 ```

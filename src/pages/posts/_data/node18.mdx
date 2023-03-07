@@ -1,0 +1,71 @@
+---
+slug: node18
+title: ¿Sabías estas novedades de Node 18?
+date: 2023 Mar 07, por JotaErrE
+pubDate: 2023-03-07
+categories: ['Documentacón', 'Programación']
+images: ['https://bs-uploads.toptal.io/blackfish-uploads/components/seo/content/og_image_file/og_image/1181582/secure-rest-api-in-nodejs-18f43b3033c239da5d2525cfd9fdc98f.png']
+shortDescription: En este post te cuento algunas de las mejores novedades que nos trae Node 18 y como utilizarlas.
+---
+Nodejs es sin duda hoy en día uno de los ambientes más populares para el desarrollo de aplicaciones web en el lado de servidor, al contrario de lo que mucha gente piensa, Nodejs no es un lenguaje de programación, es un entorno de ejecución para JavaScript, es decir, es un intérprete de JavaScript que nos permite ejecutar código JavaScript en el lado del servidor.
+
+Hoy te presento las 3 características que a mi parecer son las mejores.
+
+## Fecth API Nativo
+Sí, leíste bien, fetch api nativo, antes de la versión 18 de Node, si queríamos hacer peticiones http desde Node, teníamos que instalar un librería aparte como la popular Axios, pero esto ya no es necesario. Ahora podemos utilizar la misma API que utilizamos en el lado del cliente para hacer peticiones http desde el lado del servidor.
+
+```js
+
+fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+  .then(res => res.json().then(console.log)) // pokemon data
+```
+
+## Nueva función "structuredClone()"
+Anteriormente para realizar copias de objetos **los cuales tengan varios niveles**, debíamos utilizar alguna librería de terceros como justClone o lodash, o utilizar el *famoso* JSON.parse(JSON.stringify(obj)). Ahora con la nueva función "structuredClone()" podemos realizar copias de objetos de forma nativa y sin importar la profundidad de los mismos.
+```js
+
+const obj = {
+  name: 'JotaErrE',
+  age: 24,
+  skills: {
+    front: ['HTML', 'CSS', 'JS'],
+    back: ['Nodejs', 'PHP', 'Python']
+  }
+}
+
+const objCopy = { ...obj } // solo copia el primer nivel
+const objCopy2 = structuredClone(obj) // copia todos los niveles
+
+objCopy.skills.front.push('React')
+objCopy2.skills.front.push('Vue')
+
+console.log(obj.skills.front) // ['HTML', 'CSS', 'JS', 'React', 'Vue']
+console.log(objCopy.skills.front) // ['HTML', 'CSS', 'JS', 'React', 'Vue']
+console.log(objCopy2.skills.front) // ['HTML', 'CSS', 'JS', 'Vue']
+
+```
+
+## ¿Adiós nodemon?
+Si has trabajado con node, habras utilizado nodemon, una librería que automáticamente reinicia el servidor cada vez que se detecta un cambio en el código, pero ahora con la nueva versión de Node, ya no es necesario utilizar nodemon, ya que ahora podemos utilizar la opción "--watch" para que el servidor se reinicie automáticamente cada vez que se detecta un cambio en el código.
+```bash
+
+node --watch index.js
+```
+o puedes agregarlo como script en el package.json
+```json
+
+{
+  "scripts": {
+    "start": "node --watch index.js"
+  }
+}
+```
+y luego ejecutarlo con
+```sh
+
+npm start
+```
+
+Existen muchísimas más características nuevas, como el test nativo en node y una nueva api de FormData para el servidor, pero te he mencionado las que yo en lo personal he utilizado más.
+
+Sé que llego un poco tarde (ya estamos por node 18.15.0) pero más vale tarde que nunca 😁
