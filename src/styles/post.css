@@ -46,6 +46,11 @@ code {
     /* QUITAR ESTAS LINEAS */
     /* display: flex; */
     /* flex-direction: column; */
+    /* margin-right: 20px; */
+}
+
+span[class='line']{
+    margin-right: 20px;
 }
 
 pre {
