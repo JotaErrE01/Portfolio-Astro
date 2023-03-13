@@ -36,6 +36,7 @@ const { title, image, categories, description, slug } = Astro.props;
       src={image}
       alt={title}
       class="rounded h-full w-full object-cover md:object-cover md:h-full md:w-full md:rounded-l md:rounded-r-none"
+      loading="lazy"
     />
   </figure>
 
@@ -47,17 +48,17 @@ const { title, image, categories, description, slug } = Astro.props;
         class="group-hover:text-primary-focus dark:group-hover:text-accent-focus transition-colors"
         >{title}
       </span>
-      <li class="list-none flex">
+      <ul class="list-none flex">
         {
           categories.map((category) => (
-            <ul
+            <li
               class={`text-xs ${randomColor()} text-white rounded-md px-2 py-1 mr-2`}
             >
               {category}
-            </ul>
+            </li>
           ))
         }
-      </li>
+      </ul>
     </h3>
     <p class="p-2 md:p-0 md:mb-0 mb-4">
       {description}

@@ -80,6 +80,7 @@ export const Navbar = ({ data }: Props) => {
       </div>
       <div className="navbar-center">
         <a
+          href='/'
           className="btn btn-ghost normal-case text-2xl  hover:-rotate-2 hover:scale-105 after:hidden"
         >Jota ErrE</a>
       </div>
@@ -108,6 +109,7 @@ export const Navbar = ({ data }: Props) => {
             }}
           />
           <button className="btn btn-ghost btn-circle flex"
+            aria-label="Search"
             onClick={() => {
               searhInput.current!.focus();
             }}
@@ -120,17 +122,20 @@ export const Navbar = ({ data }: Props) => {
           className="btn btn-ghost btn-circle"
           data-set-theme={theme === 'dark' ? 'light' : 'dark'}
           // data-act-class="ACTIVECLASS"
+          aria-label="Toggle Dark Mode"
           onClick={toggleDarkMode}
         >
           <div className="indicator">
+            {/* <label htmlFor="toggle"> */}
             <input
               ref={nightModeRef}
               data-set-theme={theme === 'dark' ? 'light' : 'dark'}
-              id="toggle"
+              // id="toggle"
               className="toggle bg-base-100 border-none hover:border"
               type="checkbox"
             // onClick={toggleDarkMode}
             />
+            {/* </label> */}
           </div>
         </button>
 
