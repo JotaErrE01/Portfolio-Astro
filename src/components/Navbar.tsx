@@ -86,7 +86,7 @@ export const Navbar = ({ data }: Props) => {
       </div>
 
       <div className='relative navbar-end gap-3'>
-        <div className="flex input-bordered input items-center rounded-3xl justify-end p-0 pl-5 max-w-[3rem] first:focus-within:max-w-full origin-right transition-all duration-[400ms] ease-out">
+        <div className="flex input-bordered input items-center rounded-3xl justify-end p-0 pl-5 max-w-[3rem] first:focus-within:max-w-full origin-right transition-all duration-[400ms] ease-out relative z-[21]">
           <input
             ref={searhInput}
             type="text"
@@ -101,11 +101,11 @@ export const Navbar = ({ data }: Props) => {
               setDataFiltered(data.filter((item) => item.title.toLowerCase().includes(e.target.value.toLowerCase())));
             }}
             onBlur={() => {
-              setTimeout(() => {
-                setVisible(false);
-                setSearchValue('');
-                setDataFiltered(data);
-              }, 100);
+              // setTimeout(() => {
+                // setVisible(false);
+                // setSearchValue('');
+                // setDataFiltered(data);
+              // }, 200);
             }}
           />
           <button className="btn btn-ghost btn-circle flex"
@@ -142,14 +142,19 @@ export const Navbar = ({ data }: Props) => {
         {
           visible && dataFiltered.length > 0 &&
           <div
-            className="flex flex-col gap-2 p-2 bg-base-100 rounded-md shadow-sm shadow-secondary-focus max-h-[20rem] overflow-y-auto absolute right-10 top-12 z-10 mt-4 w-[24rem]"
+            className="flex flex-col bg-base-100 rounded-md shadow-sm shadow-secondary-focus max-h-[20rem] overflow-y-auto absolute right-10 top-12 z-20 mt-4 w-[24rem]"
           >
             {
               dataFiltered.map((item) => (
                 <a
                   key={item.slug}
                   href={item.slug}
-                  className="btn btn-ghost normal-case text-base after:hidden justify-start min-h-[2.5rem] gap-2 flex-nowrap"
+                  className="btn btn-ghost normal-case text-base after:hidden justify-start min-h-[3rem] gap-2 flex-nowrap rounded-none py-7"
+                  onClick={() => {
+                    setVisible(false);
+                    setSearchValue('');
+                    setDataFiltered(data);
+                  }}
                 >
                   <img
                     src={item.image}
@@ -162,6 +167,15 @@ export const Navbar = ({ data }: Props) => {
                 </a>
               ))
             }
+
+            <div 
+              className='fixed inset-0 z-[-1]'
+              onClick={() => {
+                setVisible(false);
+                setSearchValue('');
+                setDataFiltered(data);
+              }}
+            />
           </div>
         }
 

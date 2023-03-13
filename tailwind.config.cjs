@@ -73,7 +73,7 @@ module.exports = {
 				}
 			},
 			{
-				night: {
+				dark: {
 					...require('daisyui/src/colors/themes')['[data-theme=night]'],
 					'.toogle-text': {
 						'color': '#fff'

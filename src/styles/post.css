@@ -40,18 +40,23 @@ code {
     background-color: transparent !important;
     padding: 1px !important;
     font-size: 1rem !important;
-    /* margin-top: 1rem; */
-    /* margin-left: 25px !important; */
+    margin-top: 1rem;
+    /* margin-left: 25spx !important; */
 
     /* QUITAR ESTAS LINEAS */
     /* display: flex; */
     /* flex-direction: column; */
+    /* margin-right: 20px; */
+}
+
+span[class='line']{
+    margin-right: 20px;
 }
 
 pre {
     background-color: transparent !important;
     margin-top: -25px !important;
-    margin-bottom: -50px !important;
+    /* margin-bottom: -15px !important; */
     padding-left: 40px;
 }
 
