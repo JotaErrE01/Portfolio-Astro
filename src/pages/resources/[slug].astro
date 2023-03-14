@@ -61,6 +61,7 @@ const { Content, components, frontmatter } = Astro.props.resource;
         src={frontmatter.images[0]}
         alt={frontmatter.title}
         class="h-full w-full object-cover"
+        loading="lazy"
       />
     </figure>
 

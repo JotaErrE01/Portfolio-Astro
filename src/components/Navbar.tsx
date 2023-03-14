@@ -100,13 +100,6 @@ export const Navbar = ({ data }: Props) => {
               setSearchValue(e.target.value);
               setDataFiltered(data.filter((item) => item.title.toLowerCase().includes(e.target.value.toLowerCase())));
             }}
-            onBlur={() => {
-              // setTimeout(() => {
-                // setVisible(false);
-                // setSearchValue('');
-                // setDataFiltered(data);
-              // }, 200);
-            }}
           />
           <button className="btn btn-ghost btn-circle flex"
             aria-label="Search"
@@ -126,16 +119,15 @@ export const Navbar = ({ data }: Props) => {
           onClick={toggleDarkMode}
         >
           <div className="indicator">
-            {/* <label htmlFor="toggle"> */}
-            <input
-              ref={nightModeRef}
-              data-set-theme={theme === 'dark' ? 'light' : 'dark'}
-              // id="toggle"
-              className="toggle bg-base-100 border-none hover:border"
-              type="checkbox"
-            // onClick={toggleDarkMode}
-            />
-            {/* </label> */}
+            <label htmlFor="toggle" className='h-0 w-0 overflow-hidden' >label</label>
+              <input
+                ref={nightModeRef}
+                data-set-theme={theme === 'dark' ? 'light' : 'dark'}
+                id="toggle"
+                className="toggle bg-base-100 border-none hover:border"
+                type="checkbox"
+              // onClick={toggleDarkMode}
+              />
           </div>
         </button>
 
@@ -168,7 +160,7 @@ export const Navbar = ({ data }: Props) => {
               ))
             }
 
-            <div 
+            <div
               className='fixed inset-0 z-[-1]'
               onClick={() => {
                 setVisible(false);
@@ -178,7 +170,6 @@ export const Navbar = ({ data }: Props) => {
             />
           </div>
         }
-
       </div>
     </header>
   )
