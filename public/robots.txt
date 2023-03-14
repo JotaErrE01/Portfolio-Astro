@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https:www.jotaerre.com/sitemap-index.xml

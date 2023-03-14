@@ -10,9 +10,12 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
 
+// https://astro.build/config
 export default defineConfig({
-  integrations: [react(), tailwind(), mdx()],
+  site: 'https://jotaerre.dev',
+  integrations: [react(), tailwind(), mdx(), sitemap()],
   // output: 'server',
   // adapter: node({
   //   mode: 'standalone'
@@ -27,8 +30,8 @@ export default defineConfig({
       // https://github.com/shikijs/shiki/blob/main/docs/languages.md
       // langs: ['js', 'jsx', 'ts', 'tsx', 'css', 'html', 'json', 'md', 'astro'],
       // Enable word wrap to prevent horizontal scrolling
-      wrap: false,
+      wrap: false
     },
-    syntaxHighlight: 'shiki',
-  },
+    syntaxHighlight: 'shiki'
+  }
 });
