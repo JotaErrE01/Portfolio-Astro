@@ -86,7 +86,7 @@ export const Navbar = ({ data }: Props) => {
       </div>
 
       <div className='relative navbar-end gap-3'>
-        <div className="flex input-bordered input items-center rounded-3xl justify-end p-0 pl-5 max-w-[3rem] first:focus-within:max-w-full origin-right transition-all duration-[400ms] ease-out relative z-[21]">
+        <div className="md:flex input-bordered input items-center rounded-3xl justify-end p-0 pl-5 max-w-[3rem] first:focus-within:max-w-full origin-right transition-all duration-[400ms] ease-out relative z-[21] hidden">
           <input
             ref={searhInput}
             type="text"
