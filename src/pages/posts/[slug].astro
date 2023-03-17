@@ -45,7 +45,7 @@ const { Content, components, frontmatter } = Astro.props.post;
   description={frontmatter.shortDescription}
   image={frontmatter.images[0]}
   keywords={frontmatter.keywords.toString()}
-  canonical={`https://jotaerre.dev/${frontmatter.slug}`}
+  canonical={`https://jotaerre.dev/${frontmatter.slug}/`}
 >
   <section class="max-w-3xl mx-auto">
     <h1
