@@ -7,6 +7,7 @@ export interface Props {
 	description?: string;
 	image?: string;
 	keywords?: string;
+	canonical?: string;
 }
 
 const posts = await Astro.glob<IFrontmatter>("../pages/posts/_data/*.mdx");
@@ -25,8 +26,8 @@ const data = [
 		image: res.frontmatter.images[0],
 	})),
 ];
-
-const { title, description, image, keywords = "jotaerre" } = Astro.props;
+//<meta name="generator" content={Astro.generator} />
+const { title, description, image, keywords = "jotaerre", canonical } = Astro.props;
 
 // console.log(Astro.props);
 ---
@@ -37,7 +38,6 @@ const { title, description, image, keywords = "jotaerre" } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="author" content="Jonathan Ruiz" />
-		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
@@ -47,7 +47,7 @@ const { title, description, image, keywords = "jotaerre" } = Astro.props;
 		<meta property="og:site_name" content="JotaErrE" />
 		<meta name="keywords" content={`${keywords}, dev, react, javascript`} />
 		<!-- Cloudflare Web Analytics -->
-		<link rel="canonical" href="https://jotaerre.dev/" />
+		<link rel="canonical" href={canonical} />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<script
