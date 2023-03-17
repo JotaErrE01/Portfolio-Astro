@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https:www.jotaerre.com/sitemap-index.xml
+Sitemap: https:www.jotaerre.dev/sitemap-index.xml

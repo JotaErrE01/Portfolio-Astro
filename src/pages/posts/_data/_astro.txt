@@ -1,0 +1,11 @@
+---
+slug: astro
+title: Astro, el nuevo framework de JavaScript
+date: 2023, Marzo 20
+pubDate: 2023-03-20
+images: ['https://res.cloudinary.com/jotaerre01/image/upload/v1679073576/Portfolio/lequnhcjmoo0fwttyxic.webp']
+shortDescription: ¿Conoces Astro? En este post revisamos un poco qué es y por qué es tan interesante este nuevo framework de JavaScript.
+keywords: ['astro', 'javascript', 'frameworks', 'ssg', 'static site generator']
+---
+
+Cuando desarrollamos aplicaciones web, es muy común que nos encontremos con la necesidad de crear páginas web estáticas. Esto es muy común en el mundo de los blogs, donde no necesitamos que la información cambie constantemente, sino que queremos que sea estática y que se muestre de la misma manera siempre.
