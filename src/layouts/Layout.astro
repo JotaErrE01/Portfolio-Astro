@@ -10,7 +10,9 @@ export interface Props {
 }
 
 const posts = await Astro.glob<IFrontmatter>("../pages/posts/_data/*.mdx");
-const resources = await Astro.glob<IFrontmatter>("../pages/resources/_data/*.mdx");
+const resources = await Astro.glob<IFrontmatter>(
+	"../pages/resources/_data/*.mdx"
+);
 const data = [
 	...posts.map((post) => ({
 		...post.frontmatter,
@@ -22,9 +24,9 @@ const data = [
 		slug: `/resources/${res.frontmatter.slug}`,
 		image: res.frontmatter.images[0],
 	})),
-]
+];
 
-const { title, description, image, keywords = 'jotaerre' } = Astro.props;
+const { title, description, image, keywords = "jotaerre" } = Astro.props;
 
 // console.log(Astro.props);
 ---
@@ -36,31 +38,23 @@ const { title, description, image, keywords = 'jotaerre' } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="author" content="Jonathan Ruiz" />
 		<meta name="generator" content={Astro.generator} />
-		<meta
-		name="description"
-		content={description}
-		/>
-		<meta
-		property="og:title"
-		content={title}
-		/>
-		<meta
-		property="og:description"
-		content={description}
-		/>
-		<meta
-		property="og:image"
-		content={image?.replace('webp', 'jpg')}
-		/>
-		
+		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image?.replace("webp", "jpg")} />
+
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="JotaErrE" />
-		<meta name="keywords" content={`${keywords}, dev, react, javascript`}/>
+		<meta name="keywords" content={`${keywords}, dev, react, javascript`} />
 		<!-- Cloudflare Web Analytics -->
-		<link rel="canonical" href="https://jotaerre.dev/">
-		<link rel="sitemap" href="/sitemap-index.xml">
+		<link rel="canonical" href="https://jotaerre.dev/" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c7a2b5a8129349dc9800b3d6f62e3392"}'></script><!-- End Cloudflare Web Analytics -->
+		<script
+			defer
+			src="https://static.cloudflareinsights.com/beacon.min.js"
+			data-cf-beacon='{"token": "c7a2b5a8129349dc9800b3d6f62e3392"}'
+		></script><!-- End Cloudflare Web Analytics -->
 		<title>{title}</title>
 	</head>
 	<body class="container lg:max-w-[100rem] mx-auto p-4 md:px-5 lg:px-0">
