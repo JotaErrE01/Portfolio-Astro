@@ -11,3 +11,6 @@ https://refactoring.guru/
 trabajos como developers => https://www.glassdoor.com, https://www.indeed.com, https://www.linkedin.com, https://arc.dev
 
 astro
+zed.dev
+
+html hacks => filter: invert, document edition mode, querySelector $
