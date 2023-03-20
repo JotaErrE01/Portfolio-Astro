@@ -1,0 +1,35 @@
+---
+slug: astro
+title: Astro, el nuevo framework de JavaScript
+date: 2023, Marzo 20
+pubDate: 2023-03-20
+images: ['https://res.cloudinary.com/jotaerre01/image/upload/v1679073576/Portfolio/lequnhcjmoo0fwttyxic.webp']
+shortDescription: ¿Conoces Astro? En este post revisamos un poco qué es y por qué es tan interesante este nuevo framework de JavaScript.
+keywords: ['astro', 'javascript', 'frameworks', 'ssg', 'static site generator']
+---
+
+Cuando desarrollamos aplicaciones web, es muy común que nos encontremos con la necesidad de crear páginas web estáticas. Esto es muy común en el mundo de los blogs, donde no necesitamos que la información cambie constantemente, sino que queremos que sea estática y que se muestre de la misma manera siempre.
+
+Astro es el chico nuevo del barrio, que llega con unas funcionalidades bastante interesantes. En este post revisaremos qué es Astro y por qué deberías considerarlo para tus proyectos.
+
+## ¿Qué es Astro?
+Astro es un _framework de JavaScript_ que nos permite crear páginas web estáticas, tiene soporte nativo de markdown y al ser sitios estáticos, podemos desplegar nuestros prouyectos en cualquier lugar, incluso en edge computing.
+Para iniciar un proyecto con Astro, ejecutamos el siguiente comando en la terminal:
+```bash
+
+npm create astro@latest
+```
+
+## Características de Astro
+- **Integración con frameworks del frontend:** Astro nos permite integrar nuestros frameworks favoritos de frontend, para ello, ejecutamos el siguiente comando en la terminal:
+```bash
+
+npx astro add react // vue, svelte, lit, solid, preact, etc
+```
+- **Astro Island:** Quizás esta es la característica más interesantes que trae Astro, este sistema se refiere a un componente UI interactivo en un html estático. Piensa en ellos como islas en un mar de HTML estático y no interactivo.
+- **Soporte para markdown:** Astro nos da la posibilidad de crear páginas web estáticas con markdown ya que trae un soporte nativo para el mismo.
+- **Rutas dinámicas:** Así como Nextjs, Astro nos permite crear rutas dinámicas en nuestra aplicación, y de igual manera usa la función `getStaticPaths` para generar las rutas dinámicas y esta función únicamente se ejecuta en tiempo de compilación.
+
+Después de haber visto las características de Astro, te animarías a probarlo? Si te interesa aprenderlo, te dejo el enlace a la [documentación oficial de Astro](https://docs.astro.build/en/getting-started/ 'link').
+
+Como dato curioso, Astro este blog está construido con Astro 😆.
