@@ -60,15 +60,30 @@ const {
 			property="og:image"
 			content={image?.replace("webp", "jpg").replace("png", "jpg")}
 		/>
-		<meta property="og:site_name" content="JotaErrE" />
+		<meta property="og:site_name" content="jotaerre.dev" />
+		<meta property="og:url" content={canonical} />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@jota_erre_01" />
+		<meta name="twitter:creator" content="@jota_erre_01" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta
+			name="twitter:image"
+			content={image?.replace("webp", "jpg").replace("png", "jpg")}
+		/>
+		<meta name="twitter:domain" content="jotaerre.dev">
+
+		<meta name="robots" content="index, follow" />
 
 		<meta
 			name="keywords"
-			content={`${keywords}, js, dev, react, javascript, development, developer`}
+			content={`${keywords}, aprede js, desarrollo web blog, desarrollo web, development, programacions`}
 		/>
 		<link rel="canonical" href={canonical} />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<!-- <link rel="alternate" type="application/rss+xml" href="/feed.xml" /> -->
 		<!-- Cloudflare Web Analytics -->
 		<script
 			defer
@@ -92,9 +107,7 @@ const {
 		<div class="md:w-full lg:w-3/4 mx-auto">
 			<Navbar client:load data={data} />
 
-			<div
-				class="fadeIn"
-			>
+			<div class="fadeIn">
 				<slot />
 			</div>
 
@@ -110,9 +123,9 @@ const {
 	</body>
 </html>
 
-
 <style>
 	.fadeIn {
+		/* animation: fadeIn 0.3s ease-in-out; */
 		animation: fadeIn 0.3s ease-in-out;
 	}
 
@@ -124,4 +137,15 @@ const {
 			opacity: 1;
 		}
 	}
+
+	/* @keyframes fadeInDown {
+		from {
+			opacity: 0;
+			transform: translate3d(0, 20%, 0);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	} */
 </style>
