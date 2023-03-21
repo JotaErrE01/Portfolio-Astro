@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import 'styles/darkMode.css';
 
 interface Props {
@@ -9,42 +9,24 @@ interface Props {
     shortDescription: string;
   }[]
 }
+// console.log(document);
+
 
 export const Navbar = ({ data }: Props) => {
-  const nightModeRef = useRef<HTMLInputElement>(null);
   const searhInput = useRef<HTMLInputElement>(null);
-  const [theme, setTheme] = useState('dark');
-  const [searchValue, setSearchValue] = useState('');
   const [dataFiltered, setDataFiltered] = useState(data);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || 'dark');
+  const [searchValue, setSearchValue] = useState('');
   const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const theme = localStorage.getItem("theme") || 'dark';
-    if ('theme' in localStorage && !document.documentElement.getAttribute('data-theme')) {
-      document.documentElement.removeAttribute('data-theme');
-    }
-    if (theme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      document.documentElement.classList.add('dark');
-      nightModeRef.current!.checked = false;
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-      document.documentElement.classList.remove('dark');
-      nightModeRef.current!.checked = true;
-    }
-    setTheme(theme);
-  }, []);
 
   const toggleDarkMode = () => {
     document.documentElement.removeAttribute('data-theme');
     if (theme === "dark") {
-      nightModeRef.current!.checked = true;
       document.documentElement.classList.remove('dark');
       localStorage.setItem("theme", "light");
       document.documentElement.setAttribute('data-theme', 'light');
       setTheme("light");
     } else {
-      nightModeRef.current!.checked = false;
       document.documentElement.classList.add('dark');
       localStorage.setItem("theme", "dark");
       document.documentElement.setAttribute('data-theme', 'dark');
@@ -114,19 +96,18 @@ export const Navbar = ({ data }: Props) => {
         <button
           className="btn btn-ghost btn-circle"
           data-set-theme={theme === 'dark' ? 'light' : 'dark'}
-          // data-act-class="ACTIVECLASS"
           aria-label="Toggle Dark Mode"
           onClick={toggleDarkMode}
         >
           <div className="indicator">
             <label htmlFor="toggle" className='h-0 w-0 overflow-hidden' >label</label>
               <input
-                ref={nightModeRef}
                 data-set-theme={theme === 'dark' ? 'light' : 'dark'}
                 id="toggle"
                 className="toggle bg-base-100 border-none hover:border"
                 type="checkbox"
-              // onClick={toggleDarkMode}
+                checked={theme === 'dark' ? false : true}
+                onChange={toggleDarkMode}
               />
           </div>
         </button>

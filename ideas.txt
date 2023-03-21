@@ -12,5 +12,8 @@ trabajos como developers => https://www.glassdoor.com, https://www.indeed.com, h
 
 astro
 zed.dev
+https://platzi.com/clases/1798-javascript-navegador/25687-garbage-collection/#:~:text=Garbage%20Collection%20es%20un%20proceso,sweep%20(marcado%20y%20barrido).
+
+view transition api
 
 html hacks => filter: invert, document edition mode, querySelector $
