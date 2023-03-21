@@ -92,7 +92,11 @@ const {
 		<div class="md:w-full lg:w-3/4 mx-auto">
 			<Navbar client:load data={data} />
 
-			<slot />
+			<div
+				class="fadeIn"
+			>
+				<slot />
+			</div>
 
 			<footer class="mt-16">
 				<p class="text-center text-gray-500 text-sm mb-1">
@@ -105,3 +109,19 @@ const {
 		</div>
 	</body>
 </html>
+
+
+<style>
+	.fadeIn {
+		animation: fadeIn 0.3s ease-in-out;
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+</style>
