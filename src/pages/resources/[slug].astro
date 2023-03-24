@@ -2,6 +2,7 @@
 import Layout from "layouts/Layout.astro";
 import type { IFrontmatter } from "interfaces/IFrontmatter";
 import 'styles/post.css'; // Posts styles
+import CodeBox from "components/ui/CodeBox.astro";
 
 export const prerender = true;
 export async function getStaticPaths() {
@@ -69,6 +70,7 @@ const { Content, components, frontmatter } = Astro.props.resource;
     <Content
       components={{
         ...components,
+        pre: CodeBox,
       }}
     />
   </section>
