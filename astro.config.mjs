@@ -15,8 +15,12 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://jotaerre.dev',
-  integrations: [react(), tailwind(), mdx(), sitemap()],
-  // output: 'server',
+  integrations: [react(), tailwind(), mdx(), sitemap({
+    changefreq: 'weekly',
+    priority: 0.7,
+    lastmod: new Date('2023-03-28'),
+  })],
+  output: 'static',
   // adapter: node({
   //   mode: 'standalone'
   // }),

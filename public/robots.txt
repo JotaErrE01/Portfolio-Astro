@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://jotaerre.dev/
+Host: https://jotaerre.dev
 
 # Sitemap
 Sitemap: https://jotaerre.dev/sitemap-0.xml

@@ -17,7 +17,7 @@ interface IResorces extends IFrontmatter {
 //   shortDescription: "",
 // };
 
-export const prerender = true;
+// export const prerender = true;
 
 const data = await Astro.glob<IResorces>("../pages/resources/_data/*.mdx");
 const sortedResources = sortByDate(data);

@@ -12,13 +12,9 @@
   },
   "dependencies": {
     "@astrojs/mdx": "0.15.1",
-    "@astrojs/netlify": "2.0.0",
-    "@astrojs/node": "5.0.1",
     "@astrojs/sitemap": "^1.2.1",
     "astro": "2.0.2",
-    "autoprefixer": "10.4.13",
     "daisyui": "2.49.0",
-    "postcss": "8.4.21",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -28,6 +24,8 @@
     "@types/marked": "4.0.8",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
+    "postcss": "8.4.21",
+    "autoprefixer": "10.4.13",
     "postcss-import": "15.1.0",
     "postcss-nesting": "11.0.1",
     "tailwindcss": "3.2.4"

@@ -1,0 +1,42 @@
+---
+import PostCard from "components/PostCard.astro";
+import type { IFrontmatter } from "interfaces/IFrontmatter";
+import Layout from "layouts/Layout.astro";
+import { sortByDate } from "utils/sortByDate";
+
+
+const posts = await Astro.glob<IFrontmatter>("../pages/posts/_data/*.mdx");
+const sortedPosts = sortByDate(posts);
+const lastPosts = sortedPosts.slice(0, 3).map(post => ({
+  title: post.frontmatter.title,
+  image: post.frontmatter.images[0],
+  description: post.frontmatter.shortDescription,
+  date: post.frontmatter.date,
+  slug: post.frontmatter.slug,
+}));
+
+const data = [...lastPosts]
+---
+
+<Layout>
+  <img src="/svgs/404.json" alt="" />
+
+  <script
+    src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
+  ></script>
+  <lottie-player
+    src="/svgs/404.json"
+    background="transparent"
+    speed="1"
+    loop
+    autoplay
+    class="mx-auto mt-10 w-3/4 rounded-xl overflow-hidden"
+    ></lottie-player>
+
+  <h1 class="text-4xl font-bold text-center mt-10 mb-10">Pero puedes revisar</h1>
+  <div class="flex gap-4 flex-wrap justify-center xl:justify-between">
+    {
+      data.map(post => ( <PostCard {...post} /> ))
+    }
+  </div>
+</Layout>
