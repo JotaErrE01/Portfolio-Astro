@@ -88,5 +88,5 @@ a[title='link']:focus::after {
 }
 
 img[title='imgMdx'] {
-    @apply bg-gray-100 dark:bg-gray-800 rounded-md overflow-hidden mb-5 h-96 w-[90%] sm:w-[100%] mx-auto shadow-md dark:shadow-lg border border-secondary dark:border-gray-700
+    @apply bg-gray-100 dark:bg-gray-800 rounded-md overflow-hidden mb-5 md:max-h-[22rem] w-[90%] sm:w-[40rem] mx-auto shadow-md dark:shadow-lg border border-secondary dark:border-gray-700
 }

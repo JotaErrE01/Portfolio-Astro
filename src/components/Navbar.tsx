@@ -9,8 +9,6 @@ interface Props {
     shortDescription: string;
   }[]
 }
-// console.log(document);
-
 
 export const Navbar = ({ data }: Props) => {
   const searhInput = useRef<HTMLInputElement>(null);
