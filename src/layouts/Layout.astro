@@ -1,6 +1,7 @@
 ---
 import type { IFrontmatter } from "interfaces/IFrontmatter";
 import { Navbar } from "../components/Navbar";
+import { sortByDate } from "utils/sortByDate";
 
 export interface Props {
 	title?: string;
@@ -10,22 +11,27 @@ export interface Props {
 	canonical?: string;
 }
 
-const posts = await Astro.glob<IFrontmatter>("../pages/posts/_data/*.mdx");
-const resources = await Astro.glob<IFrontmatter>(
-	"../pages/resources/_data/*.mdx"
-);
-const data = [
-	...posts.map((post) => ({
-		...post.frontmatter,
-		slug: `/posts/${post.frontmatter.slug}`,
-		image: post.frontmatter.images[0],
-	})),
-	...resources.map((res) => ({
-		...res.frontmatter,
-		slug: `/resources/${res.frontmatter.slug}`,
-		image: res.frontmatter.images[0],
-	})),
-];
+let posts = await Astro.glob<IFrontmatter>("../pages/posts/_data/*.mdx");
+let resources = await Astro.glob<IFrontmatter>("../pages/resources/_data/*.mdx");
+posts = posts.map((post) => ({...post, frontmatter: {...post.frontmatter, slug: `/posts/${post.frontmatter.slug}/`}}));
+resources = resources.map((res) => ({...res, frontmatter: {...res.frontmatter, slug: `/resources/${res.frontmatter.slug}/`}}));
+const sortedData = sortByDate([...posts, ...resources]);
+// const data = [
+// 	...posts.map((post) => ({
+// 		...post.frontmatter,
+// 		slug: `/posts/${post.frontmatter.slug}`,
+// 		image: post.frontmatter.images[0],
+// 	})),
+// 	...resources.map((res) => ({
+// 		...res.frontmatter,
+// 		slug: `/resources/${res.frontmatter.slug}`,
+// 		image: res.frontmatter.images[0],
+// 	})),
+// ];
+const data = sortedData.map((item) => ({
+	...item.frontmatter,
+	image: item.frontmatter.images[0],
+})).slice(0, 10);
 //<meta name="generator" content={Astro.generator} />
 // <meta property="og:audio" content="https://example.com/bond/theme.mp3" />
 // <meta property="og:description"
@@ -41,7 +47,7 @@ const {
 	title,
 	description,
 	image,
-	keywords = "jotaerre",
+	keywords = "jotaerre dev",
 	canonical,
 } = Astro.props;
 ---
@@ -78,7 +84,7 @@ const {
 
 		<meta
 			name="keywords"
-			content={`${keywords}, blog js, aprede js, desarrollo web blog, desarrollo web, aprender programacion`}
+			content={`${keywords}, como iniciar en la programacion, aprede js, desarrollo web blog, desarrollo web, aprender programacion`}
 		/>
 		<link rel="canonical" href={canonical} />
 		<link rel="sitemap" href="/sitemap-index.xml" />

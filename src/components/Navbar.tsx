@@ -48,12 +48,12 @@ export const Navbar = ({ data }: Props) => {
             <li
               className='list'
             ><a
-              href='/posts'
+              href='/posts/'
             >Posts</a></li>
             <li
               className='list'
             ><a
-              href='/resources'
+              href='/resources/'
             >Recursos</a></li>
           </ul>
         </div>

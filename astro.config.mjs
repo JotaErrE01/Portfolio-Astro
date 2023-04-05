@@ -17,7 +17,7 @@ export default defineConfig({
   site: 'https://jotaerre.dev',
   integrations: [react(), tailwind(), mdx(), sitemap({
     changefreq: 'weekly',
-    priority: 0.7,
+    priority: 1,
     lastmod: new Date('2023-03-28'),
   })],
   output: 'static',
