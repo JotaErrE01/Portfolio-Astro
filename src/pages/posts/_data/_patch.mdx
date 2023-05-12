@@ -32,6 +32,7 @@ ten en cuenta que las estamos instalando como dependencias de desarrollo porque 
 3. Una vez corregido el error, debemos ejecutar el siguiente comando:
 
 ```zsh
+
 npx patch-package <nombre-del-paquete> // en mi caso es npx patch-package react-native-calendar
 ```
 
@@ -40,6 +41,7 @@ npx patch-package <nombre-del-paquete> // en mi caso es npx patch-package react-
 5. Finalmente, debemos agregar el siguiente script en nuestro **package.json**:
 
 ```json
+
 "scripts": {
     "postinstall": "patch-package"
   },
