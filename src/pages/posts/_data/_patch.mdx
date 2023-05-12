@@ -1,0 +1,50 @@
+---
+slug: patch
+title: Aprende a parchar un paquete de NPM
+date: 2023, Mayo 12
+pubDate: 2023-05-12
+images: ['https://res.cloudinary.com/jotaerre01/image/upload/c_scale,h_454,w_655/v1683923029/box8gpeuoqvncvny7eze.webp']
+shortDescription: ¿Conoces Astro? En este post revisamos un poco qué es y por qué es tan interesante este nuevo framework de JavaScript.
+keywords: ['node', 'javascript', 'npm', 'patch', 'package', 'package.json']
+---
+
+Hola 😁 ya ha pasado un tiempo desde mi último post, pero para compesar el tiempo, prometo que este blog te será de utilidad en algún momento de tu carrera como desarrollador.
+
+Esta semana en mi trabajo me realizando un proyecto en react native me encontré que la librería que estoy utilizando como calendario (React Native Calendar) presenta un error al momento de actualizar el estado de la aplicación, y esto hace que cuando el estado cambia, el calendario no se actualice.
+
+Actualmente se puede encontrar el [issue en Github]('https://github.com/wix/react-native-calendars/issues/1589' 'link').
+
+Cabe mencionar que el parchear paquetes solo debemos hacerlo si aún no se ha encontrado la solución al bug, ya que si se encuentra la solución, lo mejor es actualizar el paquete a la última versión.
+
+Sin más rodeos, veamos cómo podemos parchar un paquete de NPM.
+
+1. Lo primero que debemos hacer es instalar las siguientes dependencias:
+
+```zsh
+
+npm i -D patch-package postinstall-postinstall
+```
+ten en cuenta que las estamos instalando como dependencias de desarrollo porque estas no son necesarias en el entorno de producción.
+
+
+2. Una vez instaladas las dependencias, debemos localizar el archivo en los **node_modules** donde esta sucediendo el error y correjir las lineas de código que están generando el error.
+
+3. Una vez corregido el error, debemos ejecutar el siguiente comando:
+
+```zsh
+npx patch-package <nombre-del-paquete> // en mi caso es npx patch-package react-native-calendar
+```
+
+4. Este comando nos creará una carpeta llamada **patches** en la raíz de nuestro proyecto, dentro de esta carpeta encontraremos un archivo con el nombre del paquete que estamos parchando, en mi caso **react-native-calendar.patch**.
+
+5. Finalmente, debemos agregar el siguiente script en nuestro **package.json**:
+
+```json
+"scripts": {
+    "postinstall": "patch-package"
+  },
+```
+
+Ahora si removemos los node_modules e instalamos nuevamente las dependencias, veremos que al momento de instalar el paquete que estamos parchando, se ejecutará el script que acabamos de crear y se aplicará el parche que creamos.
+
+Espero que esto te ayudé en tus nuevos proyectos 🧑‍💻.

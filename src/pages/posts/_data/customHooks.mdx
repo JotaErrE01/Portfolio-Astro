@@ -8,13 +8,12 @@ shortDescription: En este post te hablaré de los custom hooks que más me han a
 keywords: ['aprender react', 'custom hooks react', 'mejores practicas para react', 'manejo de estado', 'manejo de componentes']
 ---
 
-
 Muchas veces en nuestros proyectos de react nos encontramos con la necesidad de refactorizar nuestros componentes y extraer lógica que se repite en varios componentes, aqí es donde entran los custom hooks, y en este post te hablaré de los custom hooks que considero que debes saber si te dedicas al desarrollo web con React.
 
 ## useForm
 Empezando desde lo básico, este custom hook nos puede ayudar al manejo de nuestros formularios. Si bien es sabido que podemos instalar librerias como Formik o React Hook Form, en ocasiones no necesitamos una libreria tan robusta y podemos usar este custom hook para que nos facilite el manejo de los inputs de nuestros formularios.
 
-```javascript
+```js
 
 import { useState } from 'react';
 
@@ -40,7 +39,7 @@ export const useForm = (initialState = {}) => {
 ## useFetch
 Muchas veces se comete el fallo de manejar toda la lógica de las peticiones dentro del componente, lo que hace que nuestro componente se vea sobrecargado y sea difícil de mantener. Ahora bien que tal si mantenemos toda la lógica de las peticiones en un custom hook y solo llamamos a ese hook en nuestro componente, de esta manera nuestro componente se verá mucho más limpio y fácil de mantener.
 
-```javascript
+```js
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -75,7 +74,7 @@ export const useFetch = (url) => {
 ```
 Si estamos utilizando typescript, este custom hook bien podría sacar ventaja de los genéricos para mejorar la satisfacción del tipado.
 
-```typescript
+```ts
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -117,7 +116,7 @@ export const useFetch = <T>(url: string) => {
 
 Imagina que tienes un input de búsqueda y quieres que se haga la petición a la API solo cuando el usuario deje de escribir, disparar un evento cada vez que el usuario escribe en el input puede ser costoso y no es necesario, por lo que podemos usar este custom hook para que se dispare el evento en un tiempo determinado o cuando el usuario deje de escribir.
 
-```javascript
+```js
 
 import { useEffect, useState } from 'react';
 
@@ -134,7 +133,9 @@ export const useDebounce = (value, delay = 300) => {
     };
   }, [value, delay]);
 
-  return debouncedValue;
+  return {
+    debouncedValue,
+  };
 };
 
 ```
@@ -143,7 +144,7 @@ export const useDebounce = (value, delay = 300) => {
 ## useNearScreen
 Apoyandonos de la api de Intersection Observer podemos crear un custom hook que nos permita saber si un elemento se encuentra en la pantalla o no, esto puede ser muy útil para hacer lazy loading de imágenes, para mostrar un componente solo cuando el usuario lo vea e incluso el famoso infinite scroll.
     
-```javascript
+```js
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -152,7 +153,7 @@ export const useNearScreen = (externalRef, options = {}, once = false) => {
 
   useEffect(() => {
     if(!externalRef.current) return;
-    const onChange: IntersectionObserverCallback = ([{ isIntersecting }], observer) => {
+    const onChange = ([{ isIntersecting }], observer) => {
       if (isIntersecting) {
         setIsVisible(true);
         once && observer.disconnect();
