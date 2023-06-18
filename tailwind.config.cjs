@@ -11,7 +11,7 @@ module.exports = {
 		themes: [
 			{
 				'light': {
-					...require('daisyui/src/colors/themes')['[data-theme=cmyk]'],
+					...require('daisyui/src/theming/themes')['[data-theme=cmyk]'],
 					'.toogle-text': {
 						'color': 'black',
 					},
@@ -74,7 +74,7 @@ module.exports = {
 			},
 			{
 				dark: {
-					...require('daisyui/src/colors/themes')['[data-theme=night]'],
+					...require('daisyui/src/theming/themes')['[data-theme=night]'],
 					'.toogle-text': {
 						'color': '#fff'
 					},
