@@ -4,17 +4,29 @@ import { Navbar } from "../components/Navbar";
 import { sortByDate } from "utils/sortByDate";
 
 export interface Props {
-	title?: string;
-	description?: string;
-	image?: string;
-	keywords?: string;
-	canonical?: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  keywords?: string;
+  canonical?: string;
 }
 
-let posts = await Astro.glob<IFrontmatter>("../pages/posts/_data/*.mdx");
 let resources = await Astro.glob<IFrontmatter>("../pages/resources/_data/*.mdx");
-posts = posts.map((post) => ({...post, frontmatter: {...post.frontmatter, slug: `/posts/${post.frontmatter.slug}/`}}));
-resources = resources.map((res) => ({...res, frontmatter: {...res.frontmatter, slug: `/resources/${res.frontmatter.slug}/`}}));
+let posts = await Astro.glob<IFrontmatter>("../pages/posts/_data/*.mdx");
+posts = posts.map((post) => ({
+  ...post,
+  frontmatter: {
+    ...post.frontmatter,
+    slug: `/posts/${post.frontmatter.slug}/`,
+  },
+}));
+resources = resources.map((res) => ({
+  ...res,
+  frontmatter: {
+    ...res.frontmatter,
+    slug: `/resources/${res.frontmatter.slug}/`,
+  },
+}));
 const sortedData = sortByDate([...posts, ...resources]);
 // const data = [
 // 	...posts.map((post) => ({
@@ -28,10 +40,12 @@ const sortedData = sortByDate([...posts, ...resources]);
 // 		image: res.frontmatter.images[0],
 // 	})),
 // ];
-const data = sortedData.map((item) => ({
-	...item.frontmatter,
-	image: item.frontmatter.images[0],
-})).slice(0, 10);
+const data = sortedData
+  .map((item) => ({
+    ...item.frontmatter,
+    image: item.frontmatter.images[0],
+  }))
+  .slice(0, 10);
 //<meta name="generator" content={Astro.generator} />
 // <meta property="og:audio" content="https://example.com/bond/theme.mp3" />
 // <meta property="og:description"
@@ -44,108 +58,115 @@ const data = sortedData.map((item) => ({
 // <meta property="og:site_name" content="IMDb" />
 // <meta property="og:video" content="https://example.com/bond/trailer.swf" />
 const {
-	title,
-	description,
-	image,
-	keywords = "jotaerre dev",
-	canonical,
+  title,
+  description,
+  image,
+  keywords = "jotaerre dev",
+  canonical,
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="author" content="Jonathan Ruiz" />
-		<meta name="description" content={description} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:type" content="website" />
-		<meta
-			property="og:image"
-			content={image?.replace("webp", "jpg").replace("png", "jpg")}
-		/>
-		<meta property="og:site_name" content="jotaerre.dev" />
-		<meta property="og:url" content={canonical} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Jonathan Ruiz" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content={image?.replace("webp", "jpg").replace("png", "jpg")}
+    />
+    <meta property="og:site_name" content="jotaerre.dev" />
+    <meta property="og:url" content={canonical} />
 
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:site" content="@jota_erre_01" />
-		<meta name="twitter:creator" content="@jota_erre_01" />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		<meta
-			name="twitter:image"
-			content={image?.replace("webp", "jpg").replace("png", "jpg")}
-		/>
-		<meta name="twitter:domain" content="jotaerre.dev">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@jota_erre_01" />
+    <meta name="twitter:creator" content="@jota_erre_01" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta
+      name="twitter:image"
+      content={image?.replace("webp", "jpg").replace("png", "jpg")}
+    />
+    <meta name="twitter:domain" content="jotaerre.dev" />
 
-		<meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow" />
 
-		<meta
-			name="keywords"
-			content={`${keywords}, como iniciar en la programacion, aprede js, desarrollo web blog, desarrollo web, aprender programacion`}
-		/>
-		<link rel="canonical" href={canonical} />
-		<link rel="sitemap" href="/sitemap-index.xml" />
-		<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
-		<link rel="icon" type="image/png" href="/JR.png" />
-		<!-- <link rel="alternate" type="application/rss+xml" href="/feed.xml" /> -->
-		<!-- Cloudflare Web Analytics -->
-		<script
-			defer
-			src="https://static.cloudflareinsights.com/beacon.min.js"
-			data-cf-beacon='{"token": "c7a2b5a8129349dc9800b3d6f62e3392"}'
-		></script><!-- End Cloudflare Web Analytics -->
-		<script async>
-			const theme = localStorage.getItem("theme") || "dark";
+    <meta
+      name="keywords"
+      content={`${keywords}, como iniciar en la programacion, aprede js, desarrollo web blog, desarrollo web, aprender programacion`}
+    />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+    <link rel="icon" type="image/png" href="/JR.png" />
+    <!-- <link rel="alternate" type="application/rss+xml" href="/feed.xml" /> -->
+    <!-- Cloudflare Web Analytics -->
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "c7a2b5a8129349dc9800b3d6f62e3392"}'
+    ></script><!-- End Cloudflare Web Analytics -->
+    <script async>
+      const theme = localStorage.getItem("theme") || "dark";
 
-			if (theme === "dark") {
-				document.documentElement.setAttribute("data-theme", "dark");
-				document.documentElement.classList.add("dark");
-			} else {
-				document.documentElement.setAttribute("data-theme", "light");
-				document.documentElement.classList.remove("dark");
-			}
-		</script>
-		<title>{title}</title>
-	</head>
-	<body class="container lg:max-w-[100rem] mx-auto p-4 md:px-5 lg:px-0">
-		<div class="md:w-full lg:w-3/4 mx-auto">
-			<Navbar client:load data={data} />
+      if (theme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+    <title>{title}</title>
+    <!-- <base target="_blank" /></head -->
+  >
 
-			<div class="fadeIn">
-				<slot />
-			</div>
+  <body class="container lg:max-w-[100rem] mx-auto p-4 md:px-5 lg:px-0">
+    <div class="md:w-full lg:w-3/4 mx-auto">
+      <Navbar client:load data={data} />
 
-			<footer class="mt-16">
-				<p class="text-center text-gray-500 text-sm mb-1">
-					© {new Date().getFullYear()} - Hecho con ❤️ por
-					<a href="/" class="text-blue-500 hover:text-blue-700 hover:underline"
-						>JotaErrE</a
-					>
-				</p>
-			</footer>
-		</div>
-	</body>
+      <div class="fadeIn">
+        <slot />
+      </div>
+
+      <footer class="mt-16">
+        <p class="text-center text-gray-500 text-sm mb-1">
+          © {new Date().getFullYear()} - Hecho con ❤️ por
+          <a href="/" class="text-blue-500 hover:text-blue-700 hover:underline"
+            >JotaErrE</a
+          >
+        </p>
+      </footer>
+    </div>
+  </body>
 </html>
 
 <style>
-	.fadeIn {
-		/* animation: fadeIn 0.3s ease-in-out; */
-		animation: fadeIn 0.3s ease-in-out;
-	}
+  .fadeIn {
+    /* animation: fadeIn 0.3s ease-in-out; */
+    animation: fadeIn 0.3s ease-in-out;
+  }
 
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-		}
-		to {
-			opacity: 1;
-		}
-	}
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
-	/* @keyframes fadeInDown {
+  /* ::view-transition-old(root),
+	::view-transition-new(root) {
+		animation-duration: 0.5s;
+	} */
+
+  /* @keyframes fadeInDown {
 		from {
 			opacity: 0;
 			transform: translate3d(0, 20%, 0);
