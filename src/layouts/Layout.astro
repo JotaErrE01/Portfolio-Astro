@@ -1,7 +1,8 @@
 ---
-import type { IFrontmatter } from "interfaces/IFrontmatter";
+import { ViewTransitions } from 'astro:transitions';
 import { Navbar } from "../components/Navbar";
 import { sortByDate } from "utils/sortByDate";
+import type { IFrontmatter } from "interfaces/IFrontmatter";
 
 export interface Props {
   title?: string;
@@ -46,6 +47,9 @@ const data = sortedData
     image: item.frontmatter.images[0],
   }))
   .slice(0, 10);
+
+console.log({data});
+
 //<meta name="generator" content={Astro.generator} />
 // <meta property="og:audio" content="https://example.com/bond/theme.mp3" />
 // <meta property="og:description"
@@ -123,13 +127,18 @@ const {
       }
     </script>
     <title>{title}</title>
+
+    <ViewTransitions />
     <!-- <base target="_blank" /></head -->
 
   <body class="container lg:max-w-[100rem] mx-auto p-4 md:px-5 lg:px-0">
     <div class="container mx-auto md:w-full lg:w-3/4">
-      <Navbar client:load data={data} />
+      <Navbar
+        client:only="react"
+        data={data}
+      />
 
-      <div class="fadeIn">
+      <div>
         <slot />
       </div>
 
@@ -145,34 +154,3 @@ const {
   </body>
 </html>
 
-<style>
-  .fadeIn {
-    /* animation: fadeIn 0.3s ease-in-out; */
-    animation: fadeIn 0.3s ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  /* ::view-transition-old(root),
-	::view-transition-new(root) {
-		animation-duration: 0.5s;
-	} */
-
-  /* @keyframes fadeInDown {
-		from {
-			opacity: 0;
-			transform: translate3d(0, 20%, 0);
-		}
-		to {
-			opacity: 1;
-			transform: none;
-		}
-	} */
-</style>
