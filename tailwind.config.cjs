@@ -15,7 +15,7 @@ module.exports = {
 		themes: [
 			{
 				'light': {
-					...require('daisyui/src/theming/themes')['[data-theme=cmyk]'],
+					...require('daisyui/src/theming/themes')['cmyk'],
 					'.toogle-text': {
 						'color': 'black',
 					},
@@ -78,9 +78,12 @@ module.exports = {
 			},
 			{
 				dark: {
-					...require('daisyui/src/theming/themes')['[data-theme=night]'],
+					...require('daisyui/src/theming/themes')['night'],
 					'.toogle-text': {
 						'color': '#fff'
+					},
+					'.text-secondary': {
+						'color': '#606ef5'
 					},
 					'.border-twitter': {
 						'border': 'none',
@@ -95,7 +98,7 @@ module.exports = {
 			}
 		],
 		darkTheme: 'night',
-		lightTheme: 'light',
+		lightTheme: 'cmyk',
 	},
 	darkMode: 'class',
 }

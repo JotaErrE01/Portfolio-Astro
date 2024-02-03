@@ -16,7 +16,7 @@ export const Navbar = ({ data }: Props) => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || 'dark');
   const [searchValue, setSearchValue] = useState('');
   const [visible, setVisible] = useState(false);
-  const moonSun = useRef<HTMLInputElement>(null);
+  // const moonSun = useRef<HTMLInputElement>(null);
 
   useLayoutEffect(() => {
     // setTheme(localStorage.getItem("theme") || 'dark');
@@ -49,7 +49,7 @@ export const Navbar = ({ data }: Props) => {
   };
 
   return (
-    <header className="navbar bg-base-100 my-5 border rounded-md border-primary shadow-sm shadow-secondary-focus mx-auto">
+    <header className="navbar bg-base-100 my-5 border rounded-md border-primary shadow-sm shadow-secondary mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -82,16 +82,16 @@ export const Navbar = ({ data }: Props) => {
       </div>
 
       <div className='relative navbar-end gap-3'>
-        <div className="md:flex input-bordered input items-center rounded-3xl justify-end p-0 pl-5 max-w-[3rem] first:focus-within:max-w-full origin-right transition-all duration-[400ms] ease-out relative z-[21] hidden">
+        <div className="md:flex input-bordered input items-center rounded-3xl justify-end p-0 pl-5 max-w-[3rem] first:focus-within:max-w-full origin-right transition-all duration-[400ms] ease-out relative z-[21] hidden"
+          style={{ outline: 'none' }}
+        >
           <input
             ref={searhInput}
             type="text"
             placeholder="Buscar"
-            className="input p-0 max-h-[100%] outline-none focus:outline-none transition-all origin-right scale-x-[0%] rounded-[50%] focus:scale-x-[100%] focus:rounded-3xl duration-300 focus:placeholder-gray-500 placeholder-transparent focus:text-primary-focus text-transparent focus:h-auto focus:w-auto"
+            className="input p-0 max-h-[100%] outline-none focus:outline-none transition-all origin-right scale-x-[0%] rounded-[50%] focus:scale-x-[100%] focus:rounded-3xl duration-300 focus:placeholder-gray-500 placeholder-transparent dark:focus:text-primary text-transparent focus:h-auto focus:w-auto border-none focus:text-secondary"
             value={searchValue}
-            onFocus={() => {
-              setVisible(true);
-            }}
+            onFocus={() => setVisible(true)}
             onChange={(e) => {
               setSearchValue(e.target.value);
               setDataFiltered(data.filter((item) => item.title.toLowerCase().includes(e.target.value.toLowerCase())));
@@ -111,32 +111,17 @@ export const Navbar = ({ data }: Props) => {
           className="btn btn-ghost btn-circle"
           data-set-theme={theme === 'dark' ? 'light' : 'dark'}
           aria-label="Toggle Dark Mode"
-          // onClick={toggleDarkMode}
+        // onClick={toggleDarkMode}
         >
           <div className="indicator">
-            {/* <label htmlFor="toggle" className='h-0 w-0 overflow-hidden' >label</label> */}
-            {/* <input
-                // ref={moonSun}
-                data-set-theme={theme === 'dark' ? 'light' : 'dark'}
-                id="toggle"
-                className={`${theme === 'dark' ? 'dark-ico' : 'light-ico'} bg-base-100 border-none hover:border toggle`}
-                type="checkbox"
-                checked={theme === 'dark' ? false : true}
-                onChange={toggleDarkMode}
-                style={{
-                  boxShadow: theme === 'dark' ? 'inset calc(var(--size) * 0.33) calc(var(--size) * -0.25) 0' : 'inset 0 0 0 var(--size), calc(var(--offset-orthogonal) * -1) 0 0 var(--ray-size), var(--offset-orthogonal) 0 0 var(--ray-size), 0 calc(var(--offset-orthogonal) * -1) 0 var(--ray-size), 0 var(--offset-orthogonal) 0 var(--ray-size), calc(var(--offset-diagonal) * -1) calc(var(--offset-diagonal) * -1) 0 var(--ray-size), var(--offset-diagonal) var(--offset-diagonal) 0 var(--ray-size), calc(var(--offset-diagonal) * -1) var(--offset-diagonal) 0 var(--ray-size), var(--offset-diagonal) calc(var(--offset-diagonal) * -1) 0 var(--ray-size)'
-                }}
-              /> */}
-            <label className="swap swap-rotate"
-              // onClick={toggleDarkMode}
-            >
+            <label className="swap swap-rotate">
 
               {/* this hidden checkbox controls the state */}
-              <input type="checkbox" 
+              <input type="checkbox"
                 data-set-theme={theme === 'dark' ? 'light' : 'dark'}
                 checked={theme === 'dark' ? true : false}
                 onClick={toggleDarkMode}
-                onChange={() => {}}
+                onChange={() => { }}
               />
 
               {/* sun icon */}
@@ -144,7 +129,6 @@ export const Navbar = ({ data }: Props) => {
 
               {/* moon icon */}
               <svg className="swap-off fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" /></svg>
-
             </label>
           </div>
         </button>
@@ -152,7 +136,7 @@ export const Navbar = ({ data }: Props) => {
         {
           visible && dataFiltered.length > 0 &&
           <div
-            className="flex flex-col bg-base-100 rounded-md shadow-sm shadow-secondary-focus max-h-[20rem] overflow-y-auto absolute right-10 top-12 z-20 mt-4 w-[24rem]"
+            className="flex flex-col bg-base-100 rounded-md shadow-md shadow-secondary-focus max-h-[20rem] overflow-y-auto absolute right-10 top-12 z-20 mt-4 w-[24rem] overflow-x-hidden"
           >
             {
               dataFiltered.map((item) => (
@@ -171,9 +155,7 @@ export const Navbar = ({ data }: Props) => {
                     alt={item.title}
                     className="w-12 h-10 mr-2 rounded-md object-cover"
                   />
-                  <p
-                    className="text-base inline-block overflow-hidden overflow-ellipsis whitespace-nowrap"
-                  >{item.title}</p>
+                  <p className="text-base inline-block overflow-hidden overflow-ellipsis whitespace-nowrap">{item.title}</p>
                 </a>
               ))
             }
