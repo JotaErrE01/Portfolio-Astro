@@ -3,10 +3,11 @@ import Layout from "layouts/Layout.astro";
 import CodeBox from "components/ui/CodeBox.astro";
 import type { IFrontmatter } from "interfaces/IFrontmatter";
 import 'styles/post.css'; // Posts styles
+import type { MDXInstance } from "astro";
 
 // export const prerender = true;
 export async function getStaticPaths() {
-  const posts = await Astro.glob<IFrontmatter>("./_data/*.mdx");
+  const posts: MDXInstance<IFrontmatter>[] = await Astro.glob<IFrontmatter>("./_data/*.mdx");
 
   return posts.map((post) => ({
     params: {

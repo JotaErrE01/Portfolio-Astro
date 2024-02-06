@@ -1,13 +1,15 @@
 ---
 import Layout from "layouts/Layout.astro";
 import type { IFrontmatter } from "interfaces/IFrontmatter";
-import 'styles/post.css'; // Posts styles
+import "styles/post.css"; // Posts styles
 import CodeBox from "components/ui/CodeBox.astro";
+import type { MDXInstance } from "astro";
 
 // export const prerender = true;
 export async function getStaticPaths() {
-  const resources = await Astro.glob<IFrontmatter>("./_data/*.mdx");
-    
+  const resources: MDXInstance<IFrontmatter>[] =
+    await Astro.glob<IFrontmatter>("./_data/*.mdx");
+
   return resources.map((resource) => ({
     params: {
       slug: resource.frontmatter.slug,
@@ -17,6 +19,7 @@ export async function getStaticPaths() {
     },
   }));
 }
+
 // rest Cuando se sube un archivo al cliente mediante un input de tipo FileList,
 interface Props {
   images: string[];
