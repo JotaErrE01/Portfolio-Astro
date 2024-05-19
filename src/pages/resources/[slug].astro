@@ -4,6 +4,7 @@ import type { IFrontmatter } from "interfaces/IFrontmatter";
 import "styles/post.css"; // Posts styles
 import CodeBox from "components/ui/CodeBox.astro";
 import type { MDXInstance } from "astro";
+import { Image } from "astro:assets";
 
 // export const prerender = true;
 export async function getStaticPaths() {
@@ -59,7 +60,7 @@ const { Content, components, frontmatter } = Astro.props.resource;
       >{frontmatter.date}</span
     >
 
-    <figure
+    <!-- <figure
       class="bg-gray-100 dark:bg-gray-800 rounded-md overflow-hidden mb-5 w-[90%] md:max-h-[22rem] sm:w-[40rem] mx-auto border border-secondary dark:border-none shadow_dark_mode"
     >
       <img
@@ -68,7 +69,16 @@ const { Content, components, frontmatter } = Astro.props.resource;
         class="h-full w-full object-cover"
         loading="lazy"
       />
-    </figure>
+    </figure> -->
+    <Image
+      src={frontmatter.images[0]}
+      alt={frontmatter.title}
+      width={800}
+      height={400}
+      class={"bg-gray-100 dark:bg-gray-800 rounded-md mb-5 w-[90%] md:max-h-[22rem] sm:w-[40rem] mx-auto border border-secondary dark:border-none shadow_dark_mode object-cover"}
+      loading={'lazy'}
+      client:load
+    />
 
     <Content
       components={{

@@ -2,12 +2,14 @@
 import Layout from "layouts/Layout.astro";
 import CodeBox from "components/ui/CodeBox.astro";
 import type { IFrontmatter } from "interfaces/IFrontmatter";
-import 'styles/post.css'; // Posts styles
+import "styles/post.css"; // Posts styles
 import type { MDXInstance } from "astro";
+import { Image } from "astro:assets";
 
 // export const prerender = true;
 export async function getStaticPaths() {
-  const posts: MDXInstance<IFrontmatter>[] = await Astro.glob<IFrontmatter>("./_data/*.mdx");
+  const posts: MDXInstance<IFrontmatter>[] =
+    await Astro.glob<IFrontmatter>("./_data/*.mdx");
 
   return posts.map((post) => ({
     params: {
@@ -41,8 +43,9 @@ interface Props {
 
 const { Content, components, frontmatter } = Astro.props.post;
 ---
+
 <Layout
-  title={frontmatter.title} 
+  title={frontmatter.title}
   description={frontmatter.shortDescription}
   image={frontmatter.images[0]}
   keywords={frontmatter.keywords.toString()}
@@ -59,21 +62,24 @@ const { Content, components, frontmatter } = Astro.props.post;
       >{frontmatter.date}</span
     >
 
-    <figure
-      class="bg-gray-100 dark:bg-gray-800 rounded-md overflow-hidden mb-5 w-[90%] md:max-h-[22rem] sm:w-[40rem] mx-auto border border-secondary dark:border-none shadow_dark_mode"
-    >
-      <img
-        src={frontmatter.images[0]}
-        alt={frontmatter.title}
-        class="h-full w-full object-cover"
-        loading="lazy"
-      />
-    </figure>
+    <!-- <figure
+      class="bg-gray-100 dark:bg-gray-800 rounded-md mb-5 w-[90%] md:max-h-[22rem] sm:w-[40rem] mx-auto border border-secondary dark:border-none shadow_dark_mode"
+    > -->
+    <Image
+      src={frontmatter.images[0]}
+      alt={frontmatter.title}
+      width={800}
+      height={400}
+      class={"bg-gray-100 dark:bg-gray-800 rounded-md mb-5 w-[90%] md:max-h-[22rem] sm:w-[40rem] mx-auto border border-secondary dark:border-none shadow_dark_mode object-cover"}
+      loading={"lazy"}
+      client:load
+    />
+    <!-- </figure> -->
 
     <Content
       components={{
         ...components,
-        pre: CodeBox
+        pre: CodeBox,
       }}
     />
   </section>
