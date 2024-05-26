@@ -1,0 +1,177 @@
+---
+slug: nginx
+title: Nginx, configuración básica para una aplicación con Next.js
+date: 2024, Mayo 25
+pubDate: 2024-05-25
+categories: ['Documentación', 'Servidores', 'DevOps']
+images: ['https://res.cloudinary.com/jotaerre01/image/upload/f_webp,q_auto/v1716687878/bwpvpwkcd7h5tokjjdx3.webp']
+shortDescription: En este post te mostraré las configuraciones básicas que tu servidor Nginx necesita para funcionar correctamente.
+keywords: ['nginx', 'servidor web', 'configuración de nginx']
+---
+
+Cuando terminamos de desarrollar nuestra aplicación web y queremos empezar el proceso de despliegue, una de las primeras cosas que debemos hacer es configurar nuestro servidor web. En este caso, vamos a ver cómo configurar Nginx, uno de los servidores web más populares en la actualidad.
+
+### 1. Instalación de Nginx
+Comenzando por el proceso de instalación, en sistemas basados en Debian (como Ubuntu) podemos instalar Nginx con el siguiente comando:
+
+```bash
+
+sudo apt update
+sudo apt install nginx
+```
+
+En sistemas basados en Red Hat (como CentOS) podemos instalar Nginx con el siguiente comando:
+
+```bash
+
+sudo yum install epel-release
+sudo yum install nginx
+```
+
+### 2. Verificar el estado de Nginx
+Una vez que Nginx está instalado, podemos verificar su estado con el siguiente comando:
+
+```bash
+
+sudo systemctl status nginx
+```
+Si el estado de Nginx es `active (running)`, significa que Nginx está funcionando correctamente.
+Si el estado de Nginx es `inactive (dead)`, significa que Nginx no está funcionando, para lo cual debemos iniciar el servicio con el siguiente comando:
+
+```bash
+
+sudo systemctl start nginx
+```
+
+### 3. Configuración básica de Nginx
+La configuración principal de Nginx se encuentra en /etc/nginx/nginx.conf. Sin embargo, la mayoría de las configuraciones específicas del sitio se encuentran en /etc/nginx/sites-available/ y se habilitan en /etc/nginx/sites-enabled/.
+
+Una vez localizado el archivo de configuración del sitio web, podemos comenzar con la configuración.
+
+Ejemplo de un archivo de configuración de servidor (/etc/nginx/sites-available/example.com):
+```nginx
+
+server {
+	listen 80;
+	server_name mi-dominio.com;
+
+	location / {
+		proxy_pass http://localhost:3000;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection 'upgrade';
+		proxy_set_header Host $host;
+		proxy_cache_bypass $http_upgrade;
+	}
+
+	# Redireccionar WWW a no-WWW
+	server {
+		listen 80;
+		server_name www.mi-dominio.com;
+		return 301 $scheme://mi-dominio.com$request_uri;
+	}
+}
+```
+
+Para habilitar este sitio, crea un enlace simbólico en el directorio sites-enabled:
+
+```bash
+
+sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
+```
+
+*En caso de que tu distribución no tenga un directorio sites-enabled o sites-avalible, puedes agregar la configuración directamente en el archivo de configuración principal de Nginx (/etc/nginx/conf.d) y omitir el enlace simbólico*
+
+### 4. Redireccionar tráfico HTTP a HTTPS
+Para forzar la redirección de HTTP a HTTPS, primero necesitas un bloque de servidor que escuche en el puerto 80 y redirija todas las solicitudes a HTTPS:
+
+```nginx
+
+server {
+	listen 80;
+	server_name example.com www.example.com;
+
+	return 301 https://$host$request_uri;
+}
+```
+
+### 5. Configuración de certificado SSL
+Para habilitar HTTPS en tu servidor, necesitas un certificado SSL. Puedes obtener un certificado SSL gratuito de Let's Encrypt utilizando Certbot.
+
+Primero, instala Certbot en tu servidor:
+
+```bash
+
+sudo apt install certbot python3-certbot-nginx
+```
+
+Luego, solicita un certificado SSL para tu dominio:
+
+```bash
+
+sudo certbot --nginx -d example.com -d www.example.com
+```
+
+Certbot automáticamente ajustará tu configuración de Nginx. Sin embargo, aquí tienes un ejemplo de cómo configurar un servidor SSL manualmente:
+
+```nginx
+
+# Redirigir HTTP a HTTPS
+server {
+    listen 80;
+    server_name www.tu_dominio.com tu_dominio.com;
+    return 301 https://$host$request_uri;
+}
+
+# Redirigir www a no-www en HTTPS
+server {
+    listen 443 ssl;
+    server_name www.tu_dominio.com;
+
+    ssl_certificate /etc/ssl/certs/certificado.crt;
+    ssl_certificate_key /etc/ssl/private/clave.pem;
+
+    location / {
+        return 301 https://tu_dominio.com$request_uri;
+    }
+}
+
+# Manejar HTTPS sin www
+server {
+    listen 443 ssl;
+    server_name tu_dominio.com;
+
+    ssl_certificate /etc/ssl/certs/certificado.crt;
+    ssl_certificate_key /etc/ssl/private/clave.pem;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH";
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+### 6. Reiniciar Nginx
+Después de realizar cambios en la configuración, siempre es una buena práctica probar la configuración antes de recargar Nginx:
+
+```bash
+
+sudo nginx -t
+```
+
+Si la prueba es exitosa, puedes recargar Nginx para aplicar los cambios:
+
+```bash
+
+sudo systemctl reload nginx
+```
+
+Hace poco me tocó realizar un despliegue de una aplicación de Nextjs y configurar Nginx para servir la aplicación. En este post te muestro las configuraciones básicas que me hubiera gustado encontrar en un solo lugar. Espero que te sea de utilidad. Hasta la otra!
