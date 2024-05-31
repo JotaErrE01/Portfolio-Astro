@@ -26,14 +26,7 @@ interface Props {
   title: string;
   description: string;
   post: {
-    frontmatter: {
-      title: string;
-      shortDescription: string;
-      images: string[];
-      slug: string;
-      date: string;
-      keywords: string[];
-    };
+    frontmatter: IFrontmatter;
     Content: any;
     components: {
       [key: string]: any;
@@ -57,10 +50,17 @@ const { Content, components, frontmatter } = Astro.props.post;
     >
       {frontmatter.title}
     </h1>
-    <span
+    <!-- <span
       class="block text-center text-gray-500 dark:text-gray-400 text-sm mt-2 mb-5"
       >{frontmatter.date}</span
+    > -->
+    <time
+      itemprop="datePublished"
+      datetime={frontmatter.pubDate}
+      class="block text-center text-gray-500 dark:text-gray-400 text-sm mt-2 mb-5"
     >
+      {frontmatter.date}
+    </time>
 
     <!-- <figure
       class="bg-gray-100 dark:bg-gray-800 rounded-md mb-5 w-[90%] md:max-h-[22rem] sm:w-[40rem] mx-auto border border-secondary dark:border-none shadow_dark_mode"
