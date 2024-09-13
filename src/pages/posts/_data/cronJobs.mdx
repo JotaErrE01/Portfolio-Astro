@@ -1,0 +1,84 @@
+---
+slug: cronJobs
+title: ¿Sabes cómo puedes programar o agendar tareas en tu servidor?
+date: 2024, Septiembre 12
+pubDate: 2024-09-12
+images: ['https://res.cloudinary.com/jotaerre01/image/upload/c_crop,f_webp,h_364,q_auto/v1726195048/Portfolio/zapng1oyiqcgtt7jau70.webp']
+shortDescription: Alguna vez intentaste desarrollar algún sistema que necesite ser agendado o programado, por ejemplo, enviar correos cada mes?
+keywords: ['cron', 'cron jobs', 'express', 'node js', 'correos']
+---
+
+Alguna vez has estado desarrollando un sistema de envio de correos el cuál necesitabas que los correos se envíen, por ejemplo, el primer día de cada mes. O quizás necesitabas algún sistema de depueración de archivos automáticos para que tu servidro no acumule tanta basura y quieres que se ejecute cada 2 meses, si eres desarrollador junior probablemente no tengas idea de cómo hacer para implementar este tipo de funcionalidades, por eso, en este post veremos cómo podemos programar tareas en nuestro servidor con Node.js y Express.
+
+## ¿Qué es un Cron Job?
+Los cron jobs son tareas programadas que se ejecutan automáticamente a intervalos regulares en sistemas basados en Unix o Linux. Por ejemplo, si necesitas que un script se ejecute cada día a las 12:00 PM, puedes programar un Cron Job para que se ejecute a esa hora.
+
+## ¿Cómo programar un Cron Job en Node.js?
+
+Para programar un Cron Job en Node.js, necesitamos instalar un paquete llamado `node-cron`. Este paquete nos permite programar tareas en nuestro servidor de forma sencilla. Para instalarlo, ejecuta el siguiente comando:
+
+```sh
+
+npm install node-cron
+```
+
+Una vez que hayas instalado el paquete, puedes crear un Cron Job en tu servidor de la siguiente manera:
+
+```js
+
+const cron = require('node-cron');
+
+cron.schedule('0 0 1 * *', () => {
+  console.log('Tarea programada ejecutada');
+});
+```
+
+En el codigo anterior, estamos programando una tarea que se ejecutará el primer día de cada mes a las 12:00 AM. Puedes personalizar la programación de la tarea según tus necesidades.
+
+En caso de que necesites que el cron job se ejecute una sola vez, pudees cancelarlo una vez completa el trabajo, para ello puedes hacer lo siguiente:
+
+```js
+
+const cron = require('node-cron');
+
+const task = cron.schedule('0 0 1 * *', () => {
+  console.log('Tarea programada ejecutada');
+  task.stop();
+});
+```
+
+Si necesitas saber cómo funciona la sintaxis de los cron jobs, puedes visitar [CRONTAB.GURU](https://crontab.guru/ 'link'), también puesdes pedirle a *Chat GPT* que te genere el string según tus necesidades.
+
+## Cron jobs con identificadores
+
+En caso de que necesites identificar tus cron jobs, puedes hacerlo de la siguiente manera:
+
+```js
+
+const cron = require('node-cron');
+
+const task = cron.schedule('0 0 1 * *', () => {
+  console.log('Tarea programada ejecutada');
+  task.stop();
+}, {
+  scheduled: false,
+  timezone: 'America/Guayaquil',
+  id: 'envio-correos'
+});
+
+task.start();
+```
+
+Ahora puedes guardar la referencia de tus tareas programadas en una base de datos y cancelarlas en cualquier momento.
+
+
+## Casos de uso
+
+Los cron jobs son útiles para una variedad de tareas, como:
+
+- Envío de correos electrónicos programados.
+- Limpieza de archivos temporales.
+- Actualización de datos de forma periódica.
+- Generación de informes automáticos.
+
+La primera vez que utilicé cron jobs fue cuando estaba buscando alguna manera de enviar mensajes de whatsapp programados, ya que en aquel entonces el proyecto que estaba desarrollando necesitaba integrarse con la api de whatsapp de meta y se requería agregar la función de envío de mensajes masivos agendados. Recuerdo que en su momento busqué en un montón de lugares y me hubiera gustado encontrar un post como este. Espero que te haya sido de ayuda 🧑‍💻.

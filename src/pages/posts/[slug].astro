@@ -68,9 +68,9 @@ const { Content, components, frontmatter } = Astro.props.post;
     <Image
       src={frontmatter.images[0]}
       alt={frontmatter.title}
-      width={800}
-      height={400}
-      class={"bg-gray-100 dark:bg-gray-800 rounded-md mb-5 w-[90%] md:max-h-[22rem] sm:w-[40rem] mx-auto border border-secondary dark:border-none shadow_dark_mode object-cover"}
+      width={400}
+      height={300}
+      class={"bg-gray-100 dark:bg-gray-800 rounded-md mb-5 w-[90%] mx-auto border border-secondary dark:border-none shadow_dark_mode object-cover aspect-auto"}
       loading={"lazy"}
       client:load
     />
